@@ -1,2 +1,0 @@
-[WARNING][test.cpp]:7: Ehh
-[WARNING][Debug.cpp]:38: Already an active log file. Close the active one before beginning another
