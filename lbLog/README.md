@@ -1,4 +1,3 @@
-LUNCHBOX
-Debug Logging
+##LunchBox Log (lbLog)##
 
-“Lunch Box logging class, for both run time errors and external logs”
+For more information, see the [lbLog wiki](https://github.com/Samuel-Lewis/Utils-LunchBox/wiki/lbLog)
