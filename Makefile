@@ -1,6 +1,6 @@
 # Compilation
 COMPILER = g++
-FLAGS = -pedantic #-c -g -Wall -Wextra
+FLAGS = -pedantic -c# -g -Wall -Wextra
 
 # Sources and file names
 SOURCES = $(wildcard *.cpp)
