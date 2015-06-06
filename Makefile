@@ -1,11 +1,11 @@
 # Compilation
 COMPILER = g++
-FLAGS = -c #-Wall -g -Wextra
+FLAGS = -pedantic #-c -g -Wall -Wextra
 
 # Sources and file names
 SOURCES = $(wildcard *.cpp)
 OBJECTS = $(SOURCES:.cpp=.o)
-EXE = DebugTester
+EXE = main
 
 all: $(EXE)
 
