@@ -2,7 +2,7 @@
 
 int main() {
 	// Quick set levels to hide all output in run-time, log everything to log file and quit on FATALs
-	lbLog::quickSet(0,0,1);
+	lbLog::quickSet(0,0,lbLog::fatal);
 
 	// Quick check to let me know I reached this line
 	MARK();
