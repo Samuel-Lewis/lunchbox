@@ -1,15 +1,15 @@
 
 //====================================================//
 // AUTHOR		Sam Lewis
-// LASTE UPDATE	3/06/2015
-// PROJECT		Utility Debug
+// LASTE UPDATE	6/06/2015
+// PROJECT		Lunch Box - Debug Logger
 //
 // OUTLINE
-//		Debug file to be used throughout the programs to log things.
+//		Lunch Box logging class, for both run time errors and external logs
 //====================================================//
 
-#ifndef DEBUG_H
-#define DEBUG_H
+#ifndef LB_LOG_H
+#define LB_LOG_H
 
 #include <fstream>
 #include <string>
@@ -24,7 +24,7 @@
 #define DEBUG(msg) Debug::out(__FILE__, __LINE__, "DEBUG", 5, (msg));
 #define MARK() Debug::out(__FILE__, __LINE__, "MARK", 6, (msg));
 
-class Debug {
+class lbLog {
 public:
 	static void setLogLevel(int);
 	static void setFileLogLevel(int);
@@ -35,7 +35,6 @@ public:
 
 	// Starts putting logs in to a txt for the duration of the exectuion, or until endLog() is called
 	static void startLog();
-	static void startLog(std::string);
 	static void startLog(std::string, std::string);
 	static void endLog();
 
@@ -51,4 +50,4 @@ private:
 	static std::string _getDateTime(bool);
 };
 
-#endif //DEBUG_H
+#endif //LB_LOG_H

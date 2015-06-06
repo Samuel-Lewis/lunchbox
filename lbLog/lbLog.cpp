@@ -14,37 +14,32 @@
 #include <fstream>
 #include <vector>
 
-#include "Debug.h"
+#include "lbLog.h"
 
 // Default no logs in run time
-int Debug::_logLevel;
+int lbLog::_logLevel;
 
 // Default all logs to text file
-int Debug::_fileLogLevel;
+int lbLog::_fileLogLevel;
 
 // Default quit level at FATAL
-int Debug::_quitLevel;
+int lbLog::_quitLevel;
 
-std::ofstream Debug::_logFile;
+std::ofstream lbLog::_logFile;
 
 
 // Start logging to file, with standard name and root location
-void Debug::startLog() {
+void lbLog::startLog() {
 	_createLog("",(_getDateTime(false)+".log").c_str());
 }	
 
-// Start logging to file, with standard name and custom location
-void Debug::startLog(std::string path) {
-	_createLog(path,(_getDateTime(false)+".log").c_str());
-}	
-
-// Start logging to file, with custom name and custom location
-void Debug::startLog(std::string path, std::string name) {
-	_createLog(path,(name+".log").c_str());
+// Start logging to file, with custom fileName and custom location
+void lbLog::startLog(std::string path, std::string fileName) {
+	_createLog(path,(fileName+".log").c_str());
 }	
 
 // Close the file, to stop corruption and loose ends
-void Debug::endLog() {
+void lbLog::endLog() {
 	if (_logFile.is_open()) {
 		INFO(" === FILE CLOSED ===");
 		_logFile.close();
@@ -52,9 +47,9 @@ void Debug::endLog() {
 }
 
 // Create the file. *For now*, only one file at a time.
-void Debug::_createLog(std::string path, std::string name) {
+void lbLog::_createLog(std::string path, std::string fileName) {
 	if (!_logFile.is_open()) {
-		_logFile.open((path+name).c_str());
+		_logFile.open((path+fileName).c_str());
 		INFO(" === CREATED LOG FILE ===" );
 	} else {
 		WARN("Already an active log file. Close the active one before beginning another!");
@@ -62,14 +57,14 @@ void Debug::_createLog(std::string path, std::string name) {
 }
 
 // Add next line to file
-void Debug::_writeToLog(std::string newLine) {
+void lbLog::_writeToLog(std::string newLine) {
 	if (_logFile.is_open()) {
 		_logFile << newLine;
 	}
 }
 
 // Set the logging level viewable from within the program. Required
-void Debug::setLogLevel(int newLevel) {
+void lbLog::setLogLevel(int newLevel) {
 	if (newLevel < -1) {
 		// Stop humans from going too low
 		newLevel = -1;
@@ -78,7 +73,7 @@ void Debug::setLogLevel(int newLevel) {
 }
 
 // Set the loggling level to go to the text file
-void Debug::setFileLogLevel(int newLevel) {
+void lbLog::setFileLogLevel(int newLevel) {
 	if (newLevel < -1) {
 		// Stop humans from going too low
 		newLevel = -1;
@@ -87,7 +82,7 @@ void Debug::setFileLogLevel(int newLevel) {
 }
 
 // Set the threshold for the program to quit
-void Debug::setQuitLevel(int newLevel) {
+void lbLog::setQuitLevel(int newLevel) {
 	if (newLevel < 1) {
 		// -1 and 0 are reserved. So default to 1 (FATAL)
 		newLevel = 1;
@@ -97,7 +92,7 @@ void Debug::setQuitLevel(int newLevel) {
 
 
 // Gets date and time to be used for file names
-std::string Debug::_getDateTime(bool justTime) {
+std::string lbLog::_getDateTime(bool justTime) {
 	time_t now = time(0);
 	struct tm tstruct;
 	char buf[80];
@@ -114,7 +109,7 @@ std::string Debug::_getDateTime(bool justTime) {
 }
 
 // Check the level of debug asked for
-bool Debug::_validate(int sentLevel, int levelThresh) {
+bool lbLog::_validate(int sentLevel, int levelThresh) {
 
 	// Exception for -1, HIDE ALL debug messages
 	if (levelThresh == -1) {
@@ -134,7 +129,7 @@ bool Debug::_validate(int sentLevel, int levelThresh) {
 }
 
 // Print out if logging level is met
-void Debug::out(const char* file, int line, std::string levelTag, int sentLevel, std::string msg) {
+void lbLog::out(const char* file, int line, std::string levelTag, int sentLevel, std::string msg) {
 
 	std::string toLog = "["+_getDateTime(true)+"][" + levelTag+"]:"+file+":"+std::to_string(line)+": "+msg;
 
