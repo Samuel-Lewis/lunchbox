@@ -65,42 +65,42 @@ void lbLog::_writeToLog(std::string newLine) {
 
 // Set the logging level viewable from within the program. Required
 void lbLog::setLogLevel(int newLevel) {
-	if (newLevel < -1) {
+	if (newLevel < none) {
 		// Stop humans from going too low
-		newLevel = -1;
+		newLevel = none;
 	}
 	_logLevel = newLevel;
 }
 
 // Set the loggling level to go to the text file
 void lbLog::setFileLogLevel(int newLevel) {
-	if (newLevel < -1) {
+	if (newLevel < none) {
 		// Stop humans from going too low
-		newLevel = -1;
+		newLevel = none;
 	}
 	_fileLogLevel = newLevel;
 }
 
 // Set the threshold for the program to quit
 void lbLog::setQuitLevel(int newLevel) {
-	if (newLevel < 1) {
-		// -1 and 0 are reserved. So default to 1 (FATAL)
-		newLevel = 1;
+	if (newLevel < none) {
+		// none and 0 are reserved. So default to 1 (FATAL)
+		newLevel = none;
 	}
 	_quitLevel = newLevel;
 }
 
 void lbLog::quickSet(int newLogLevel, int newFileLogLevel, int newQuitLevel) {
-	if (newLogLevel < -1) {
-		newLogLevel = -1;
+	if (newLogLevel < none) {
+		newLogLevel = none;
 	}
 	
-	if (newFileLogLevel < -1) {
-		newFileLogLevel = -1;
+	if (newFileLogLevel < none) {
+		newFileLogLevel = none;
 	}
 	
-	if (newQuitLevel < -1) {
-		newQuitLevel = -1;
+	if (newQuitLevel < none) {
+		newQuitLevel = none;
 	}
 
 	_logLevel = newLogLevel;
@@ -129,12 +129,12 @@ std::string lbLog::_getDateTime(bool justTime) {
 // Check the level of debug asked for
 bool lbLog::_validate(int sentLevel, int levelThresh) {
 
-	// Exception for -1, HIDE ALL debug messages
-	if (levelThresh == -1) {
+	// Exception for none, HIDE ALL debug messages
+	if (levelThresh == none) {
 		return false;
 
 	//Exception for 0, SHOW ALL debug messages
-	} else if (levelThresh == 0) {
+	} else if (levelThresh == all) {
 		return true;
 	} else {
 		// Otherwise, only output at designated _logLevel + all higher

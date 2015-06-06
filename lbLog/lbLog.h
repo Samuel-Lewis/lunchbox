@@ -27,7 +27,9 @@
 class lbLog {
 public:
 	enum sevLevels {
-		fatal = 1,
+		none = -1,
+		all,
+		fatal,
 		error,
 		warn,
 		info,
