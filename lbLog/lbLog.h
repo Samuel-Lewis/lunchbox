@@ -17,18 +17,29 @@
 
 
 // Different error levels to be called through the rest of the program
-#define FATAL(msg) Debug::out(__FILE__, __LINE__, "FATAL", 1, (msg));
-#define ERROR(msg) Debug::out(__FILE__, __LINE__, "ERROR", 2, (msg));
-#define WARN(msg) Debug::out(__FILE__, __LINE__, "WARNING",3,(msg));
-#define INFO(msg) Debug::out(__FILE__, __LINE__, "INFO", 4, (msg));
-#define DEBUG(msg) Debug::out(__FILE__, __LINE__, "DEBUG", 5, (msg));
-#define MARK() Debug::out(__FILE__, __LINE__, "MARK", 6, (msg));
+#define FATAL(msg) lbLog::out(__FILE__, __LINE__, "FATAL", lbLog::fatal, (msg))
+#define ERROR(msg) lbLog::out(__FILE__, __LINE__, "ERROR", lbLog::error, (msg))
+#define WARN(msg) lbLog::out(__FILE__, __LINE__, "WARNING", lbLog::warn, (msg))
+#define INFO(msg) lbLog::out(__FILE__, __LINE__, "INFO", lbLog::info, (msg))
+#define DEBUG(msg) lbLog::out(__FILE__, __LINE__, "DEBUG", lbLog::debug, (msg))
+#define MARK() lbLog::out(__FILE__, __LINE__, "MARK", lbLog::mark, (""))
 
 class lbLog {
 public:
+	enum sevLevels {
+		fatal = 1,
+		error,
+		warn,
+		info,
+		debug,
+		mark
+	};
+
+	// Level setters
 	static void setLogLevel(int);
 	static void setFileLogLevel(int);
 	static void setQuitLevel(int);
+	static void quickSet(int, int, int);
 
 	// Should only really be called from the macro.
 	static void out(const char*, int, std::string, int, std::string);

@@ -90,6 +90,24 @@ void lbLog::setQuitLevel(int newLevel) {
 	_quitLevel = newLevel;
 }
 
+void lbLog::quickSet(int newLogLevel, int newFileLogLevel, int newQuitLevel) {
+	if (newLogLevel < -1) {
+		newLogLevel = -1;
+	}
+	
+	if (newFileLogLevel < -1) {
+		newFileLogLevel = -1;
+	}
+	
+	if (newQuitLevel < -1) {
+		newQuitLevel = -1;
+	}
+
+	_logLevel = newLogLevel;
+	_fileLogLevel = newFileLogLevel;
+	_quitLevel = newQuitLevel;
+}
+
 
 // Gets date and time to be used for file names
 std::string lbLog::_getDateTime(bool justTime) {
@@ -128,7 +146,7 @@ bool lbLog::_validate(int sentLevel, int levelThresh) {
 	}
 }
 
-// Print out if logging level is met
+// Print out if logging level is met. Should always be called from a macro
 void lbLog::out(const char* file, int line, std::string levelTag, int sentLevel, std::string msg) {
 
 	std::string toLog = "["+_getDateTime(true)+"][" + levelTag+"]:"+file+":"+std::to_string(line)+": "+msg;
