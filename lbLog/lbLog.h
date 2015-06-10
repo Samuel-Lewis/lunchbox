@@ -1,11 +1,11 @@
 
 //====================================================//
-// AUTHOR		Sam Lewis
+// AUTHOR		Samuel Lewis
 // LASTE UPDATE	6/06/2015
-// PROJECT		Lunch Box - Debug Logger
+// PROJECT		LunchBox - Debug Logger
 //
 // OUTLINE
-//		Lunch Box logging class, for both run time errors and external logs
+//		LunchBox logging class, for both run time errors and external logs
 //====================================================//
 
 #ifndef LB_LOG_H
@@ -52,6 +52,9 @@ public:
 	static void endLog();
 
 private:
+	// Stop the initialization of a lbLog
+	lbLog();
+
 	static int _logLevel;
 	static int _fileLogLevel;
 	static int _quitLevel;

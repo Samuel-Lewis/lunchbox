@@ -1,11 +1,11 @@
 
 //====================================================//
-// AUTHOR		Sam Lewis
-// LASTE UPDATE	5/06/2015
-// PROJECT		Utility Debug
+// AUTHOR		Samuel Lewis
+// LASTE UPDATE	6/06/2015
+// PROJECT		LunchBox - Debug Logger
 //
 // OUTLINE
-//		Debug file to be used throughout the programs to log things.
+//		LunchBox logging class, for both run time errors and external logs
 //====================================================//
 
 #include <iostream>
@@ -16,17 +16,11 @@
 
 #include "lbLog.h"
 
-// Default no logs in run time
+// Pre decalre static vars
 int lbLog::_logLevel;
-
-// Default all logs to text file
 int lbLog::_fileLogLevel;
-
-// Default quit level at FATAL
 int lbLog::_quitLevel;
-
 std::ofstream lbLog::_logFile;
-
 
 // Start logging to file, with standard name and root location
 void lbLog::startLog() {
