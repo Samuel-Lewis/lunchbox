@@ -27,9 +27,16 @@ void lbLog::startLog() {
 	_createLog("",(_getDateTime(false)+".log").c_str());
 }	
 
-// Start logging to file, with custom fileName and custom location
-void lbLog::startLog(std::string path, std::string fileName) {
-	_createLog(path,(fileName+".log").c_str());
+// Start logging to file, with custom fileName and custom location, with the option of adding timestamp
+void lbLog::startLog(std::string path, std::string fileName, bool addTimeStamp) {
+	std::string fullFileName;
+	fullFileName = fileName;
+	if (addTimeStamp)
+	{
+		fullFileName += "-" + _getDateTime(false);
+	}
+	fullFileName += ".log"
+	_createLog(path,(fullFileName).c_str());
 }	
 
 // Close the file, to stop corruption and loose ends

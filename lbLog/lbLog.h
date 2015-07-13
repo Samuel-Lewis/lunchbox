@@ -48,7 +48,7 @@ public:
 
 	// Starts putting logs in to a txt for the duration of the exectuion, or until endLog() is called
 	static void startLog();
-	static void startLog(std::string, std::string);
+	static void startLog(std::string, std::string, bool);
 	static void endLog();
 
 private:
