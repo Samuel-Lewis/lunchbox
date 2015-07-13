@@ -35,7 +35,7 @@ void lbLog::startLog(std::string path, std::string fileName, bool addTimeStamp) 
 	{
 		fullFileName += "-" + _getDateTime(false);
 	}
-	fullFileName += ".log"
+	fullFileName += ".log";
 	_createLog(path,(fullFileName).c_str());
 }	
 
