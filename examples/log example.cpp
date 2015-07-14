@@ -1,4 +1,4 @@
-#include "lbLog.h"
+#include "../include/lbLog.h"
 
 int main() {
 	// Quick set levels to hide all output in run-time, log everything to log file and quit on FATALs

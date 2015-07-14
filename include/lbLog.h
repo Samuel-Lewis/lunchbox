@@ -13,7 +13,6 @@
 
 #include <fstream>
 #include <string>
-#include <vector>
 
 
 // Different error levels to be called through the rest of the program

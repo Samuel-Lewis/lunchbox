@@ -12,7 +12,7 @@
 #include <vector>
 #include <ctype.h>
 
-#include "lbString.h"
+#include "../include/lbString.h"
 
 // Split a string up by at least one delimeter string. Return it all in a vector of substrings
 std::vector<std::string> lbString::split (std::string& sentString, std::string delim)

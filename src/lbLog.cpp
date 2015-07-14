@@ -12,9 +12,8 @@
 #include <string>
 #include <ctime>
 #include <fstream>
-#include <vector>
 
-#include "lbLog.h"
+#include "../include/lbLog.h"
 
 // Pre decalre static vars
 int lbLog::_logLevel;

@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 
-#include "lbString.h"
+#include "../include/lbString.h"
 
 int main() {
 	// Some sample string
