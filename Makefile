@@ -1,15 +1,16 @@
 # Compilation
 CXX = g++
-CXXFLAGS = -pedantic -c # -g -Wall -Wextra
+CXXFLAGS = -pedantic -Wall -c # -g -Wextra
 
 # Sources and file names
-SOURCES = $(wildcard *.cpp)
+SOURCES = $(shell find . -type f -name "*.cpp")
 OBJECTS = $(SOURCES:.cpp=.o)
+EXE = PROJ_NAME
 all: $(EXE)
 
 # Object Compilation
 %.o: %.cpp
-	$(CXX) $(CXXFLAGS) -o $@ $^
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
 # Final compilation and output
 $(EXE): $(OBJECTS) 
