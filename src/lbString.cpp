@@ -1,12 +1,13 @@
-
-//====================================================//
-// AUTHOR		Samuel Lewis
-// LASTE UPDATE	10/06/2015
-// PROJECT		Lunch Box - String Tools
+//===============================================//
 //
-// OUTLINE
-//		LunchBox string mainpulation and search tools
-//====================================================//
+//	@Author:	Samuel Lewis
+//	@Project:	https://github.com/Samuel-Lewis/lunchbox
+//			
+//
+//	@Last Updated: 2015-07-30 21:37:43
+//	@Created:      2015-07-14 21:26:08
+//
+//===============================================//
 
 #include <string>
 #include <vector>
@@ -31,8 +32,8 @@ std::vector<std::string> lbString::split (std::string& sentString, std::string d
 		newStrings.push_back(workingString.substr(0,nextPos));
 
 		// Erase that phrase, so as to allow checking for next delim
-		// This is why we have a workinString, so we don't erase users' sent string
-		workingString.erase(0,nextPos+delim.size());
+		// This is why we have a workingString, so we don't erase users' sent string
+		workingString.erase(0,nextPos+delim.length());
 
 		nextPos = workingString.find(delim);
 	}
@@ -51,7 +52,7 @@ void lbString::remove(std::string& sentString, std::string item)
 	while(nextPos != std::string::npos)
 	{
 		// Keep removing the substring until it no longer exsists
-		sentString.erase(nextPos,item.size());
+		sentString.erase(nextPos,item.length());
 		nextPos = sentString.find(item);
 	}
 
@@ -60,7 +61,7 @@ void lbString::remove(std::string& sentString, std::string item)
 // Make all chars in string upper case
 void lbString::toUpper(std::string& sentString)
 {
-	for (int i = 0; i < sentString.size(); i++)
+	for (int i = 0; i < sentString.length(); i++)
 	{
 		sentString[i] = toupper(sentString[i]);
 	}
@@ -69,8 +70,23 @@ void lbString::toUpper(std::string& sentString)
 // Make all chars in string lower case
 void lbString::toLower(std::string& sentString)
 {
-	for (int i = 0; i < sentString.size(); i++)
+	for (int i = 0; i < sentString.length(); i++)
 	{
 		sentString[i] = tolower(sentString[i]);
 	}
+}
+
+// Strip non alphabet characters
+void lbString::getAlpha(std::string& sentString)
+{
+	std::string returnString = "";
+	for (int i = 0; i < sentString.length(); i++)
+	{
+		if (isalpha(sentString[i]))
+		{
+			returnString += sentString[i];
+		}
+	}
+
+	sentString = returnString;
 }

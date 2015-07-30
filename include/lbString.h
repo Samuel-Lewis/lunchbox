@@ -1,12 +1,13 @@
-
-//====================================================//
-// AUTHOR		Samuel Lewis
-// LASTE UPDATE	10/06/2015
-// PROJECT		Lunch Box - String Tools
+//===============================================//
 //
-// OUTLINE
-//		LunchBox string mainpulation and search tools
-//====================================================//
+//	@Author:	Samuel Lewis
+//	@Project:	https://github.com/Samuel-Lewis/lunchbox
+//			
+//
+//	@Last Updated: 2015-07-30 21:34:41
+//	@Created:      2015-07-14 21:26:08
+//
+//===============================================//
 
 #ifndef LB_STRING_H
 #define LB_STRING_H
@@ -22,6 +23,8 @@ public:
 
 	static void toUpper(std::string&);
 	static void toLower(std::string&);
+
+	static void getAlpha(std::string&);
 	
 
 private:
