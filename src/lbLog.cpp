@@ -1,12 +1,13 @@
-
-//====================================================//
-// AUTHOR		Samuel Lewis
-// LASTE UPDATE	6/06/2015
-// PROJECT		LunchBox - Debug Logger
+//===============================================//
 //
-// OUTLINE
-//		LunchBox logging class, for both run time errors and external logs
-//====================================================//
+//	@Author:	Samuel Lewis
+//	@Project:	https://github.com/Samuel-Lewis/lunchbox
+//			
+//
+//	@Last Updated: 2015-07-30 21:30:45
+//	@Created:      2015-07-14 21:26:08
+//
+//===============================================//
 
 #include <iostream>
 #include <string>
@@ -60,6 +61,7 @@ void lbLog::_createLog(std::string path, std::string fileName) {
 void lbLog::_writeToLog(std::string newLine) {
 	if (_logFile.is_open()) {
 		_logFile << newLine;
+		_logFile.flush();
 	}
 }
 
