@@ -1,3 +1,14 @@
+//===============================================//
+//
+//	@Author:	Samuel Lewis
+//	@Project:	https://github.com/Samuel-Lewis/lunchbox
+//			
+//
+//	@Last Updated: 2015-07-30 21:32:23
+//	@Created:      2015-07-14 21:26:08
+//
+//===============================================//
+
 #include "../include/lbLog.h"
 
 int main() {
