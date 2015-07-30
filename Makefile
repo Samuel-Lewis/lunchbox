@@ -2,20 +2,14 @@
 CXX = g++
 CXXFLAGS = -pedantic -Wall -c # -g -Wextra
 
-# Sources and file names
-SOURCES = $(shell find . -type f -name "*.cpp")
-OBJECTS = $(SOURCES:.cpp=.o)
-EXE = PROJ_NAME
-all: $(EXE)
+all: tests/lbLog_example \
+	tests/lbString_example
 
-# Object Compilation
-%.o: %.cpp
+lb%.o: src/lb%.cpp
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
-# Final compilation and output
-$(EXE): $(OBJECTS) 
-	$(CXX) $(OBJECTS) -o $(EXE)
+tests/lb%_example: examples/lb%_example.cpp lb%.o
+	$(CXX) $^ -o $@
 
-# Clean all objects files, and edit auto saves.
 clean:
-	rm -f $(OBJECTS) *~ $(EXE)
+	rm -f tests/*
