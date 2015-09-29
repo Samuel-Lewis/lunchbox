@@ -3,8 +3,7 @@
 //	@Author:	Samuel Lewis
 //	@Project:	https://github.com/Samuel-Lewis/lunchbox
 //			
-//
-//	@Last Updated: 2015-07-30 21:30:45
+//	@Last Updated: 2015-08-22 17:15:10
 //	@Created:      2015-07-14 21:26:08
 //
 //===============================================//
@@ -13,6 +12,7 @@
 #include <string>
 #include <ctime>
 #include <fstream>
+#include <sstream>
 
 #include "../include/lbLog.h"
 
@@ -51,7 +51,7 @@ void lbLog::endLog() {
 void lbLog::_createLog(std::string path, std::string fileName) {
 	if (!_logFile.is_open()) {
 		_logFile.open((path+fileName).c_str());
-		INFO(" === CREATED LOG FILE ===" );
+		INFO(" === STARTED LOG ===" );
 	} else {
 		WARN("Already an active log file. Close the active one before beginning another!");
 	}
@@ -151,7 +151,7 @@ bool lbLog::_validate(int sentLevel, int levelThresh) {
 // Print out if logging level is met. Should always be called from a macro
 void lbLog::out(const char* file, int line, std::string levelTag, int sentLevel, std::string msg) {
 
-	std::string toLog = "["+_getDateTime(true)+"][" + levelTag+"]:"+file+":"+std::to_string(line)+": "+msg;
+	std::string toLog = "["+_getDateTime(true)+"]["+levelTag+"]:"+file+":"+std::to_string(line)+": "+msg;
 
 	// The panic button. Quit after outputting the problem to everything.
 	if (sentLevel > 0 && sentLevel <= _quitLevel) {

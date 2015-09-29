@@ -1,27 +1,27 @@
-
-//====================================================//
-// AUTHOR		Samuel Lewis
-// LASTE UPDATE	6/06/2015
-// PROJECT		LunchBox - Debug Logger
+//===============================================//
 //
-// OUTLINE
-//		LunchBox logging class, for both run time errors and external logs
-//====================================================//
+//	@Author:	Samuel Lewis
+//	@Project:	https://github.com/Samuel-Lewis/lunchbox
+//			
+//	@Last Updated: 2015-08-22 17:40:48
+//	@Created:      2015-07-14 21:26:08
+//
+//===============================================//
 
-#ifndef LB_LOG_H
-#define LB_LOG_H
+#ifndef _LB_LOG_H
+#define _LB_LOG_H
 
 #include <fstream>
 #include <string>
-
+#include <sstream>
 
 // Different error levels to be called through the rest of the program
-#define FATAL(msg) lbLog::out(__FILE__, __LINE__, "FATAL", lbLog::fatal, (msg))
-#define ERROR(msg) lbLog::out(__FILE__, __LINE__, "ERROR", lbLog::error, (msg))
-#define WARN(msg) lbLog::out(__FILE__, __LINE__, "WARNING", lbLog::warn, (msg))
-#define INFO(msg) lbLog::out(__FILE__, __LINE__, "INFO", lbLog::info, (msg))
-#define DEBUG(msg) lbLog::out(__FILE__, __LINE__, "DEBUG", lbLog::debug, (msg))
-#define MARK() lbLog::out(__FILE__, __LINE__, "MARK", lbLog::mark, (""))
+#define FATAL(msg) { std::stringstream o; o << msg; lbLog::out(__FILE__, __LINE__, "FATAL", lbLog::info, o.str().c_str()); }
+#define ERROR(msg) { std::stringstream o; o << msg; lbLog::out(__FILE__, __LINE__, "ERROR", lbLog::info, o.str().c_str()); }
+#define WARN(msg) { std::stringstream o; o << msg; lbLog::out(__FILE__, __LINE__, "WARNING", lbLog::info, o.str().c_str()); }
+#define INFO(msg) { std::stringstream o; o << msg; lbLog::out(__FILE__, __LINE__, "INFO", lbLog::info, o.str().c_str()); }
+#define DEBUG(msg) { std::stringstream o; o << msg; lbLog::out(__FILE__, __LINE__, "DEBUG", lbLog::info, o.str().c_str()); }
+#define MARK() { lbLog::out(__FILE__, __LINE__, "MARK", lbLog::info, ""); }
 
 class lbLog {
 public:
@@ -53,6 +53,7 @@ public:
 private:
 	// Stop the initialization of a lbLog
 	lbLog();
+	~lbLog();
 
 	static int _logLevel;
 	static int _fileLogLevel;
@@ -65,4 +66,4 @@ private:
 	static std::string _getDateTime(bool);
 };
 
-#endif //LB_LOG_H
+#endif //_LB_LOG_H
