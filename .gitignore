@@ -3,7 +3,11 @@
 # C/C++ Dev 	#
 # ============= #
 *.o
+*.out
 *.exe
+# Sublime Text auto-files
+*.sublime-project
+*.sublime-workspace
 
 # ============= #
 # OS generated  #
@@ -16,9 +20,6 @@
 ehthumbs.db
 Thumbs.db
 
-
 # ============= #
 # Miscellaneous #
 # ============= #
-# Gedit auto saves
-*.*~
