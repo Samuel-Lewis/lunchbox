@@ -61,7 +61,7 @@ void lbString::remove(std::string& sentString, std::string item)
 // Make all chars in string upper case
 void lbString::toUpper(std::string& sentString)
 {
-	for (int i = 0; i < sentString.length(); i++)
+	for (unsigned i = 0; i < sentString.length(); i++)
 	{
 		sentString[i] = toupper(sentString[i]);
 	}
@@ -70,7 +70,7 @@ void lbString::toUpper(std::string& sentString)
 // Make all chars in string lower case
 void lbString::toLower(std::string& sentString)
 {
-	for (int i = 0; i < sentString.length(); i++)
+	for (unsigned i = 0; i < sentString.length(); i++)
 	{
 		sentString[i] = tolower(sentString[i]);
 	}
@@ -80,7 +80,7 @@ void lbString::toLower(std::string& sentString)
 void lbString::getAlpha(std::string& sentString)
 {
 	std::string returnString = "";
-	for (int i = 0; i < sentString.length(); i++)
+	for (unsigned i = 0; i < sentString.length(); i++)
 	{
 		if (isalpha(sentString[i]))
 		{

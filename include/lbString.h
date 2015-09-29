@@ -4,13 +4,13 @@
 //	@Project:	https://github.com/Samuel-Lewis/lunchbox
 //			
 //
-//	@Last Updated: 2015-07-30 21:34:41
+//	@Last Updated: 2015-08-20 20:38:58
 //	@Created:      2015-07-14 21:26:08
 //
 //===============================================//
 
-#ifndef LB_STRING_H
-#define LB_STRING_H
+#ifndef _LB_STRING_H
+#define _LB_STRING_H
 
 #include <vector>
 #include <string>
@@ -33,4 +33,4 @@ private:
 
 };
 
-#endif //LB_STRING_H
+#endif //_LB_STRING_H
