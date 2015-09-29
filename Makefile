@@ -1,15 +1,26 @@
+# MAKE SURE TO RENAME TO 'Makefile' BEFORE ATTEMPTING TO MAKE
+
 # Compilation
 CXX = g++
-CXXFLAGS = -pedantic -Wall -c # -g -Wextra
+INCLUDES = # -I ./lunchbox/include
+CXXFLAGS = $(INCLUDES) -pedantic -Wall -Wextra -O2 -c # -g -std=c++11
+LIBS = 
 
-all: tests/lbLog_example \
-	tests/lbString_example
+# Sources and file names
+SOURCES = $(shell find . -type f -name "*.cpp")
+OBJECTS = $(SOURCES:.cpp=.o)
+OUTDIR = ./
+EXE = main.out
+all: $(OUTDIR)/$(EXE)
 
-lb%.o: src/lb%.cpp
+# Object Compilation
+$(OUTDIR)/%.o: %.cpp
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
-tests/lb%_example: examples/lb%_example.cpp lb%.o
-	$(CXX) $^ -o $@
+# Final compilation and output
+$(EXE): $(OBJECTS) 
+	$(CXX) $(OBJECTS) $(LIBS) -o $(EXE)
 
+# Clean all objects files and exe.
 clean:
-	rm -f tests/*
+	rm -f $(OBJECTS) $(EXE)
