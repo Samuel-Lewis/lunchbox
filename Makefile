@@ -3,7 +3,7 @@
 # Compilation
 CXX = g++
 INCLUDES = # -I ./lunchbox/include
-CXXFLAGS = $(INCLUDES) -pedantic -Wall -Wextra -O2 -c # -g -std=c++11
+CXXFLAGS = $(INCLUDES) -pedantic -Wall -Wextra -O2 -std=c++11 # -g
 LIBS = 
 
 # Sources and file names
@@ -15,7 +15,7 @@ all: $(OUTDIR)/$(EXE)
 
 # Object Compilation
 $(OUTDIR)/%.o: %.cpp
-	$(CXX) $(CXXFLAGS) $^ -o $@
+	$(CXX) $(CXXFLAGS) -c $^ -o $@
 
 # Final compilation and output
 $(EXE): $(OBJECTS) 
