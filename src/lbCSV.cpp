@@ -5,7 +5,7 @@
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-09-30 21:46:01
+//	@Last Updated:	2015-09-30 21:54:08
 //	@Created:		2015-09-30 13:34:43
 //
 //===============================================//
@@ -101,7 +101,7 @@ std::vector<std::string> lbCSV::splitLine(std::string line)
 		return values;
 	}
 
-	for (unsigned i = 0; i < line.length()-1; i++)
+	for (unsigned i = 0; i < line.length(); i++)
 	{
 		if (line[i] == '"')
 		{
