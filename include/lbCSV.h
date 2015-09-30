@@ -1,3 +1,15 @@
+//===============================================//
+//
+//	@Author:	Samuel Lewis
+//	@Github:	http://github.com/Samuel-Lewis/lunchbox
+//
+//	@Project:	Lunchbox Toolset
+//
+//	@Last Updated:	2015-09-30 13:47:08
+//	@Created:		2015-07-14 21:26:08
+//
+//===============================================//
+
 #ifndef _LB_CSV_H
 #define _LB_CSV_H
 

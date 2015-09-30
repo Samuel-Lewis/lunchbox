@@ -1,3 +1,15 @@
+//===============================================//
+//
+//	@Author:	Samuel Lewis
+//	@Github:	http://github.com/Samuel-Lewis/lunchbox
+//
+//	@Project:	Lunchbox Toolset
+//
+//	@Last Updated:	2015-09-30 13:46:57
+//	@Created:		2015-09-30 13:45:13
+//
+//===============================================//
+
 #include <vector>
 
 #include "../include/lbLog.h"
