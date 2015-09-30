@@ -5,7 +5,7 @@
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-09-30 21:11:23
+//	@Last Updated:	2015-09-30 21:46:01
 //	@Created:		2015-09-30 13:34:43
 //
 //===============================================//
@@ -96,27 +96,27 @@ std::vector<std::string> lbCSV::splitLine(std::string line)
 	std::string value = "";
 
 	bool escaped = false;
-	if (line != "")
+	if (line == "")
 	{
 		return values;
 	}
-		for (unsigned i = 0; i < line.length()-1; i++)
+
+	for (unsigned i = 0; i < line.length()-1; i++)
+	{
+		if (line[i] == '"')
 		{
-			if (line[i] == '"')
-			{
 			// Everything within quotes (" ") is escaped 
-				escaped = !escaped;
-			} else if (line[i] == '#' && !escaped) {
+			escaped = !escaped;
+		} else if (line[i] == '#' && !escaped) {
 			// Everything after the comment sign is ignored
-				values.push_back(value);
-				break;
-			} else if (line[i] == ',' && !escaped) {
+			values.push_back(value);
+			break;
+		} else if (line[i] == ',' && !escaped) {
 			// Split by the comma (if not escaped)
-				values.push_back(value);
-				value = "";
-			} else {
-				value += line[i];
-			}
+			values.push_back(value);
+			value = "";
+		} else {
+			value += line[i];
 		}
 	}
 
@@ -132,7 +132,6 @@ std::vector<std::string> lbCSV::splitLine(std::string line)
 		{
 			allEmpty = false;
 		}
-		if 
 		debugVals += values[i] + ", ";
 	}
 
