@@ -5,7 +5,7 @@
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-09-30 13:43:43
+//	@Last Updated:	2015-09-30 21:11:23
 //	@Created:		2015-09-30 13:34:43
 //
 //===============================================//
@@ -56,7 +56,7 @@ TABLE lbCSV::read(std::string fileName)
 		{
 			debugKeys += keys[i] + ", ";
 		}
-		DEBUG("Loaded CSV keys: " << debugKeys);
+		INFO("Loaded CSV keys: " << debugKeys);
 
 		// Get all the other lines
 		while (getline (file, line))
@@ -98,6 +98,8 @@ std::vector<std::string> lbCSV::splitLine(std::string line)
 	bool escaped = false;
 	if (line != "")
 	{
+		return values;
+	}
 		for (unsigned i = 0; i < line.length()-1; i++)
 		{
 			if (line[i] == '"')
@@ -130,6 +132,7 @@ std::vector<std::string> lbCSV::splitLine(std::string line)
 		{
 			allEmpty = false;
 		}
+		if 
 		debugVals += values[i] + ", ";
 	}
 
