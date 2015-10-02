@@ -5,7 +5,7 @@
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-09-30 21:54:08
+//	@Last Updated:	2015-10-02 10:49:38
 //	@Created:		2015-09-30 13:34:43
 //
 //===============================================//
@@ -36,7 +36,7 @@ TABLE lbCSV::read(std::string fileName)
 
 	// Catergories
 	std::vector<std::string> keys;
-	std::vector<std::string> values;
+	std::vector<std::string> data;
 	std::map<std::string, std::string> inter;
 
 	if (file.good())
@@ -61,18 +61,18 @@ TABLE lbCSV::read(std::string fileName)
 		// Get all the other lines
 		while (getline (file, line))
 		{
-			values = splitLine(line);
+			data = splitLine(line);
 			// Make sure it's not an empty line
-			if (values.size() > 0)
+			if (data.size() > 0)
 			{
-				if (values.size() != keys.size())
+				if (data.size() != keys.size())
 				{
-					ERROR("Number of values in line does not equal number of keys: #keys=" << keys.size() << ", #vals=" << values.size());
+					ERROR("Number of data in line does not equal number of keys: #keys=" << keys.size() << ", #vals=" << data.size());
 					break;
 				}
-				for (unsigned i = 0; i < values.size(); i++)
+				for (unsigned i = 0; i < data.size(); i++)
 				{
-					inter[keys[i]] = values[i];
+					inter[keys[i]] = data[i];
 				}
 
 				// Add line to the full list
@@ -92,16 +92,16 @@ TABLE lbCSV::read(std::string fileName)
 
 std::vector<std::string> lbCSV::splitLine(std::string line)
 {
-	std::vector<std::string> values;
+	std::vector<std::string> data;
 	std::string value = "";
 
 	bool escaped = false;
 	if (line == "")
 	{
-		return values;
+		return data;
 	}
 
-	for (unsigned i = 0; i < line.length(); i++)
+	for (unsigned i = 0; i < line.length()+1; i++)
 	{
 		if (line[i] == '"')
 		{
@@ -109,11 +109,11 @@ std::vector<std::string> lbCSV::splitLine(std::string line)
 			escaped = !escaped;
 		} else if (line[i] == '#' && !escaped) {
 			// Everything after the comment sign is ignored
-			values.push_back(value);
+			data.push_back(value);
 			break;
 		} else if (line[i] == ',' && !escaped) {
 			// Split by the comma (if not escaped)
-			values.push_back(value);
+			data.push_back(value);
 			value = "";
 		} else {
 			value += line[i];
@@ -121,18 +121,19 @@ std::vector<std::string> lbCSV::splitLine(std::string line)
 	}
 
 	// Add the last value
-	values.push_back(value);
+	data.push_back(value);
 
 	bool allEmpty = true;
 	// Used just to output debug message
 	std::string debugVals = "";
-	for (unsigned i = 0; i < values.size(); i++)
+	for (unsigned i = 0; i < data.size(); i++)
 	{
-		if (values[i] != "")
+		if (data[i] != "")
 		{
 			allEmpty = false;
 		}
-		debugVals += values[i] + ", ";
+
+		debugVals += data[i] + ", ";
 	}
 
 	DEBUG("Read line: " << debugVals);
@@ -140,9 +141,9 @@ std::vector<std::string> lbCSV::splitLine(std::string line)
 	// Make it an empty line if all empty
 	if (allEmpty)
 	{
-		values.clear();
+		data.clear();
 	}
 
-	return values;
+	return data;
 
 }
