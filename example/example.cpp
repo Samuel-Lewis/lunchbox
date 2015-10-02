@@ -5,7 +5,7 @@
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-09-30 13:46:57
+//	@Last Updated:	2015-10-02 10:27:50
 //	@Created:		2015-09-30 13:45:13
 //
 //===============================================//
@@ -21,7 +21,7 @@ int main()
 {
 	// ==== lbLog demo ==== 
 	// Set debug levels to show all, log all, and quit on fatal
-	lbLog::quickSet(lbLog::all, lbLog::all, lbLog::fatal);
+	lbLog::quickSet(lbLog::info, lbLog::all, lbLog::fatal);
 
 	// Start the log in root directory, named 'testlog-[timestamp].log'
 	lbLog::startLog("example/logs/","testlog",true);
@@ -66,7 +66,9 @@ int main()
 	}
 
 	// Throwing an error that will end the program
-	// FATAL("Bye bye");
+	FATAL("Bye bye");
+
+	INFO("You should not be able to see this info message!");
 
 	// Normal program ending
 	lbLog::endLog();
