@@ -5,7 +5,7 @@
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-10-02 10:27:50
+//	@Last Updated:	2015-10-02 10:51:18
 //	@Created:		2015-09-30 13:45:13
 //
 //===============================================//
@@ -46,24 +46,7 @@ int main()
 	// fakelist.csv doens't exist, will thrown an error
 	TABLE fakeList = lbCSV::read("fakelist.csv");
 	TABLE list = lbCSV::read("example/list.csv");
-
-	std::string fullLine = "";
-	for(auto const &entry : list[0])
-	{
-		fullLine += entry.first + " ";
-	}
-	DEBUG(fullLine);
-
-	// Note: these won't display in order due to map storing.
-	for (unsigned i = 0; i < list.size(); i++)
-	{
-		fullLine = "";
-		for(auto const &entry : list[i])
-		{
-			fullLine += entry.second + " ";
-		}
-		DEBUG(fullLine);
-	}
+	// Check out the log, or set the log level to show DEBUG if you want to see the read results
 
 	// Throwing an error that will end the program
 	FATAL("Bye bye");
