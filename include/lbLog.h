@@ -5,7 +5,7 @@
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-09-30 13:47:14
+//	@Last Updated:	2015-10-02 10:25:57
 //	@Created:		2015-07-14 21:26:08
 //
 //===============================================//
@@ -18,24 +18,24 @@
 #include <sstream>
 
 // Different error levels to be called through the rest of the program
-#define FATAL(msg) { std::stringstream o; o << msg; lbLog::out(__FILE__, __LINE__, "FATAL", lbLog::info, o.str().c_str()); }
-#define ERROR(msg) { std::stringstream o; o << msg; lbLog::out(__FILE__, __LINE__, "ERROR", lbLog::info, o.str().c_str()); }
-#define WARN(msg) { std::stringstream o; o << msg; lbLog::out(__FILE__, __LINE__, "WARNING", lbLog::info, o.str().c_str()); }
+#define FATAL(msg) { std::stringstream o; o << msg; lbLog::out(__FILE__, __LINE__, "FATAL", lbLog::fatal, o.str().c_str()); }
+#define ERROR(msg) { std::stringstream o; o << msg; lbLog::out(__FILE__, __LINE__, "ERROR", lbLog::error, o.str().c_str()); }
+#define WARN(msg) { std::stringstream o; o << msg; lbLog::out(__FILE__, __LINE__, "WARNING", lbLog::warn, o.str().c_str()); }
 #define INFO(msg) { std::stringstream o; o << msg; lbLog::out(__FILE__, __LINE__, "INFO", lbLog::info, o.str().c_str()); }
-#define DEBUG(msg) { std::stringstream o; o << msg; lbLog::out(__FILE__, __LINE__, "DEBUG", lbLog::info, o.str().c_str()); }
-#define MARK() { lbLog::out(__FILE__, __LINE__, "MARK", lbLog::info, ""); }
+#define DEBUG(msg) { std::stringstream o; o << msg; lbLog::out(__FILE__, __LINE__, "DEBUG", lbLog::debug, o.str().c_str()); }
+#define MARK() { lbLog::out(__FILE__, __LINE__, "MARK", lbLog::mark, ""); }
 
 class lbLog {
 public:
 	enum sevLevels {
-		none = -1,
-		all,
+		none = 0,
 		fatal,
 		error,
 		warn,
 		info,
 		debug,
-		mark
+		mark,
+		all
 	};
 
 	// Level setters
@@ -62,8 +62,7 @@ private:
 	static int _quitLevel;
 	static std::ofstream _logFile;
 
-	static bool _validate(int,int);
-	static void _writeToLog(std::string);
+	static void _writeToFile(std::string);
 	static void _createLog(std::string, std::string);
 	static std::string _getDateTime(bool);
 };
