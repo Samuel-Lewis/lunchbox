@@ -10,6 +10,9 @@
 //
 //===============================================//
 
+// #define _LB_EXAMPLE
+#ifdef _LB_EXAMPLE
+
 #include <vector>
 
 #include "../include/lbLog.h"
@@ -59,3 +62,5 @@ int main()
 	return 0;
 
 }
+
+#endif // _LB_EXAMPLE
