@@ -5,12 +5,12 @@
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-10-02 10:51:18
+//	@Last Updated:	2015-10-19 17:41:52
 //	@Created:		2015-09-30 13:45:13
 //
 //===============================================//
 
-// #define _LB_EXAMPLE
+#define _LB_EXAMPLE
 #ifdef _LB_EXAMPLE
 
 #include <vector>
@@ -49,7 +49,7 @@ int main()
 	// fakelist.csv doens't exist, will thrown an error
 	TABLE fakeList = lbCSV::read("fakelist.csv");
 	TABLE list = lbCSV::read("example/list.csv");
-	// Check out the log, or set the log level to show DEBUG if you want to see the read results
+	// Check out the log, or set the log level to show LOG if you want to see the read results
 
 	// Throwing an error that will end the program
 	FATAL("Bye bye");
