@@ -5,12 +5,12 @@
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-11-12 16:34:28
+//	@Last Updated:	2015-11-18 21:45:37
 //	@Created:		2015-09-30 13:45:13
 //
 //===============================================//
 
-#define _LB_EXAMPLE
+// #define _LB_EXAMPLE
 #ifdef _LB_EXAMPLE
 
 #include <vector>
