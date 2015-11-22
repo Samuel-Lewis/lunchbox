@@ -5,7 +5,7 @@
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-11-18 21:45:37
+//	@Last Updated:	2015-11-22 19:20:02
 //	@Created:		2015-09-30 13:45:13
 //
 //===============================================//
@@ -26,12 +26,16 @@ int main()
 	// Set debug levels to show all, log all, and quit on fatal
 	lbLog::quickSet(lbLog::info, lbLog::all, lbLog::fatal);
 
-	// Start the log in root directory, named 'testlog-[timestamp].log'
+	// Start the log in example/logs directory, named 'testlog-[timestamp].log'
 	lbLog::startLog("example/logs/","testlog",true);
 
 	// ==== lbRNG demo ==== //
+	// INFO(lbRNG::generateSeed("custom seed string"));
+	INFO("A random number between 0 and 10 is " << lbRNG::linear(0,10));
 	INFO("A random number between 0 and 10 is " << lbRNG::linear(0,10));
 	INFO("A normally distributed N(5,2)" << lbRNG::normDist(5,2));
+
+	INFO("Seed: " << lbRNG::getSeed())
 
 	// ==== lbString demo ==== //
 	std::string str = "RACE car";
