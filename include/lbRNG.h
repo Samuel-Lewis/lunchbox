@@ -1,4 +1,3 @@
-
 //===============================================//
 //
 //	@Author:	Samuel Lewis
@@ -19,6 +18,13 @@
 
 class lbRNG
 {
+private:
+	lbRNG();
+	~lbRNG();
+	
+	static std::string _seedStr;
+	static std::default_random_engine _eng;
+	
 public:
 
 	// SEED SETTERS / GETTERS
@@ -70,17 +76,6 @@ public:
 	{
 		return linear(0.0,1.0) < weight;
 	}
-
-private:
-	lbRNG();
-	~lbRNG();
-
-	static std::string _seedStr;
-	static std::default_random_engine _eng;
 };
-
-// Static vars
-std::string lbRNG::_seedStr;
-std::default_random_engine lbRNG::_eng;
 
 #endif // _LB_RNG_H
