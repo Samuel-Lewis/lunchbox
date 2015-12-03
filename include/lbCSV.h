@@ -5,7 +5,7 @@
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-09-30 13:47:08
+//	@Last Updated:	2015-12-03 15:47:19
 //	@Created:		2015-07-14 21:26:08
 //
 //===============================================//
@@ -22,13 +22,16 @@ typedef std::vector<std::map<std::string, std::string> > TABLE;
 class lbCSV
 {
 public:
-	static TABLE read(std::string);
+	lbCSV();
+	lbCSV(std::string);
+	~lbCSV();
+	
+	TABLE table;
+
+	void read(std::string);
 
 private:
-	lbCSV();
-	~lbCSV();
-
-	static std::vector<std::string> splitLine(std::string);
+	std::vector<std::string> _splitLine(std::string);
 
 };
 

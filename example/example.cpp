@@ -5,7 +5,7 @@
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-12-03 14:38:00
+//	@Last Updated:	2015-12-03 15:47:39
 //	@Created:		2015-09-30 13:45:13
 //
 //===============================================//
@@ -53,9 +53,9 @@ int main()
 
 	// ==== lbCSV demo ==== //
 	// fakelist.csv doens't exist, will thrown an error
-	TABLE fakeList = lbCSV::read("fakelist.csv");
-	TABLE list = lbCSV::read("example/list.csv");
-	INFO(list[2]["First names"])
+	lbCSV list("fakelist.csv");
+	list.read("example/list.csv");
+	INFO(list.table[2]["First names"]);
 	// Check out the log, or set the log level to show LOG if you want to see the read results
 
 	// ==== lbConfig demo ==== //

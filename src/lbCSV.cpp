@@ -5,7 +5,7 @@
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-10-19 17:40:24
+//	@Last Updated:	2015-12-03 15:48:41
 //	@Created:		2015-09-30 13:34:43
 //
 //===============================================//
@@ -19,15 +19,17 @@
 
 #include "../include/lbLog.h"
 
-
 lbCSV::lbCSV() {}
+lbCSV::lbCSV(std::string fileName)
+{
+	read(fileName);
+}
 lbCSV::~lbCSV() {}
 
 // TABLE = vector<map <string, string> >
 // File name should include path
-TABLE lbCSV::read(std::string fileName)
+void lbCSV::read(std::string fileName)
 {
-	TABLE table;
 	INFO("Attempting to load CSV file: " << fileName);
 
 	std::ifstream file(fileName);
@@ -47,7 +49,7 @@ TABLE lbCSV::read(std::string fileName)
 		while (keys.size() == 0)
 		{
 			getline(file, line);
-			keys = splitLine(line);
+			keys = _splitLine(line);
 		}
 
 		// Used just to output message
@@ -61,7 +63,7 @@ TABLE lbCSV::read(std::string fileName)
 		// Get all the other lines
 		while (getline (file, line))
 		{
-			data = splitLine(line);
+			data = _splitLine(line);
 			// Make sure it's not an empty line
 			if (data.size() > 0)
 			{
@@ -86,11 +88,9 @@ TABLE lbCSV::read(std::string fileName)
 	} else {
 		ERROR("Could not open CSV file: " << fileName);
 	}
-
-	return table;
 }
 
-std::vector<std::string> lbCSV::splitLine(std::string line)
+std::vector<std::string> lbCSV::_splitLine(std::string line)
 {
 	std::vector<std::string> data;
 	std::string value = "";
