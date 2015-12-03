@@ -11,7 +11,7 @@
 
 #include <string>
 #include <vector>
-#include <ctype.h>
+#include <algorithm>
 
 #include "../include/lbString.h"
 
@@ -89,4 +89,21 @@ void lbString::getAlpha(std::string& sentString)
 	}
 
 	sentString = returnString;
+}
+
+// Trims
+void lbString::trim(std::string& sentString, std::string toTrim)
+{
+	// Trim leading whitespace or tabs
+	sentString.erase(0, sentString.find_first_not_of(toTrim));
+
+	// Trimp trailing whitespace or tabs
+	std::reverse(sentString.begin(), sentString.end());
+	sentString.erase(0, sentString.find_first_not_of(toTrim));
+	std::reverse(sentString.begin(), sentString.end());
+}
+
+void lbString::trim(std::string& sentString)
+{
+	trim(sentString, " \t\n\r");
 }

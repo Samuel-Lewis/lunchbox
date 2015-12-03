@@ -5,7 +5,7 @@
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-11-18 21:48:20
+//	@Last Updated:	2015-12-03 14:33:01
 //	@Created:		2015-07-14 21:26:08
 //
 //===============================================//
@@ -26,6 +26,9 @@ namespace lbString {
 
 	void getAlpha(std::string&);
 
+	// Trim whitespaces
+	void trim(std::string&);
+	void trim(std::string&, std::string);
 
 }
 

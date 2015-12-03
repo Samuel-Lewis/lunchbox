@@ -5,7 +5,7 @@
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-12-03 14:27:26
+//	@Last Updated:	2015-12-03 14:38:00
 //	@Created:		2015-09-30 13:45:13
 //
 //===============================================//
@@ -39,7 +39,8 @@ int main()
 	INFO("Seed: " << lbRNG::getSeed())
 
 	// ==== lbString demo ==== //
-	std::string str = "RACE car";
+	std::string str = "     RACE car    ";
+	lbString::trim(str);
 	std::vector<std::string> words = lbString::split(str, " ");
 
 	for (unsigned i = 0; i < words.size(); i++)
