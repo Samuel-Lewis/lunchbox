@@ -1,0 +1,12 @@
+# Simple config file
+
+debug = 0
+
+tile_width = 32
+tick_speed = 4
+
+xp_gain = 2.5
+
+# Used on splash screen
+phrase = Time to adventure!
+death_msg = Arrgghhh...

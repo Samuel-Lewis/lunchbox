@@ -5,7 +5,7 @@
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-11-22 19:20:02
+//	@Last Updated:	2015-12-03 14:27:26
 //	@Created:		2015-09-30 13:45:13
 //
 //===============================================//
@@ -19,6 +19,7 @@
 #include "../include/lbRNG.h"
 #include "../include/lbString.h"
 #include "../include/lbCSV.h"
+#include "../include/lbConfig.h"
 
 int main()
 {
@@ -53,7 +54,14 @@ int main()
 	// fakelist.csv doens't exist, will thrown an error
 	TABLE fakeList = lbCSV::read("fakelist.csv");
 	TABLE list = lbCSV::read("example/list.csv");
+	INFO(list[2]["First names"])
 	// Check out the log, or set the log level to show LOG if you want to see the read results
+
+	// ==== lbConfig demo ==== //
+	lbConfig cfg("example/config.txt");
+	INFO("Phrase: " << cfg["phrase"]); // or cfg.get("phrase") or cfg.get<std::string>("phrase")
+	INFO("XP gain: " << cfg.get<float>("xp_gain"));
+
 
 	// Throwing an error that will end the program
 	FATAL("Bye bye");
