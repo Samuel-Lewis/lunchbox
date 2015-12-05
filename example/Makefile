@@ -1,16 +1,10 @@
 #
-# Generic Makefile
+#
+# Contexted Makefile
 #  https://github.com/Samuel-Lewis/lunchbox
 #
-#  Samuel Lewis
-#  5th Dec 2015
-#
-# COMMANDS TO USE
-#  make		makes all
-#  make run	makes all and executes the product
-#  make debug	makes all with added flag of -DDEBUG (defines DEBUG)
-#  make clean	cleans up all .o files and the product
-#
+# Special Makefile to compile example program
+# Will probably break in other contexts. Use the Makefile in repo's root for a template if you need.
 
 # PROJECT NAME
 PROJECT = main
@@ -18,19 +12,17 @@ PROJECT = main
 # COMPILER
 CC = g++
 VERSION = -std=c++11 
-CC_OPTIONS = -pedantic -Wall -Wextra -O2 #-ansi
+CC_OPTIONS = -pedantic -Wall -Wextra -O2 -D_LB_EXAMPLE#-ansi
 
 # Includes and linkers
-HEADERS =
+HEADERS = -I../include
 LIBS =
-
-
 
 #########################
 # No need to edit below here
 
 # Sources
-SOURCES = $(shell find . -type f -name "*.cpp")
+SOURCES = $(shell find ./.. -type f -name "*.cpp")
 SRC_OBJECTS = $(SOURCES:.cpp=.o)
 
 %.o: %.cpp
@@ -44,9 +36,6 @@ all: $(PROJECT)
 
 run: $(PROJECT)
 	./$(PROJECT)
-
-debug: CC_OPTIONS += -DDEBUG
-debug: all
 
 # Clean
 .PHONY: clean

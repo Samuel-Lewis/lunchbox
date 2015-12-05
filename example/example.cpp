@@ -5,7 +5,7 @@
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-12-03 15:47:39
+//	@Last Updated:	2015-12-05 13:07:42
 //	@Created:		2015-09-30 13:45:13
 //
 //===============================================//
@@ -15,11 +15,11 @@
 
 #include <vector>
 
-#include "../include/lbLog.h"
-#include "../include/lbRNG.h"
-#include "../include/lbString.h"
-#include "../include/lbCSV.h"
-#include "../include/lbConfig.h"
+#include "lbLog.h"
+#include "lbRNG.h"
+#include "lbString.h"
+#include "lbCSV.h"
+#include "lbConfig.h"
 
 int main()
 {
@@ -28,7 +28,7 @@ int main()
 	lbLog::quickSet(lbLog::info, lbLog::all, lbLog::fatal);
 
 	// Start the log in example/logs directory, named 'testlog-[timestamp].log'
-	lbLog::startLog("example/logs/","testlog",true);
+	lbLog::startLog("logs/","testlog",true);
 
 	// ==== lbRNG demo ==== //
 	// INFO(lbRNG::generateSeed("custom seed string"));
@@ -54,7 +54,7 @@ int main()
 	// ==== lbCSV demo ==== //
 	// fakelist.csv doens't exist, will thrown an error
 	lbCSV list("fakelist.csv");
-	list.read("example/list.csv");
+	list.read("list.csv");
 	INFO(list.table[2]["First names"]);
 	// Check out the log, or set the log level to show LOG if you want to see the read results
 
