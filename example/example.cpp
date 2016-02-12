@@ -5,7 +5,7 @@
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-12-05 13:07:42
+//	@Last Updated:	2016-02-12 10:37:28
 //	@Created:		2015-09-30 13:45:13
 //
 //===============================================//
@@ -20,6 +20,7 @@
 #include "lbString.h"
 #include "lbCSV.h"
 #include "lbConfig.h"
+#include "lbFile.h"
 
 int main()
 {
@@ -28,7 +29,7 @@ int main()
 	lbLog::quickSet(lbLog::info, lbLog::all, lbLog::fatal);
 
 	// Start the log in example/logs directory, named 'testlog-[timestamp].log'
-	lbLog::startLog("logs/","testlog",true);
+	lbLog::startLog("example/logs/","testlog",true);
 
 	// ==== lbRNG demo ==== //
 	// INFO(lbRNG::generateSeed("custom seed string"));
@@ -54,14 +55,24 @@ int main()
 	// ==== lbCSV demo ==== //
 	// fakelist.csv doens't exist, will thrown an error
 	lbCSV list("fakelist.csv");
-	list.read("list.csv");
+	list.read("example/list.csv");
 	INFO(list.table[2]["First names"]);
-	// Check out the log, or set the log level to show LOG if you want to see the read results
+	// Check out the log, or set the log level to show INFO if you want to see the read results
 
 	// ==== lbConfig demo ==== //
 	lbConfig cfg("example/config.txt");
 	INFO("Phrase: " << cfg["phrase"]); // or cfg.get("phrase") or cfg.get<std::string>("phrase")
 	INFO("XP gain: " << cfg.get<float>("xp_gain"));
+
+
+	// ==== lbFile demo ==== //
+	std::vector<std::string> localFiles = lbFile::getContentsOfDir("example");
+	for (int i = 0; i < (int)localFiles.size(); i++)
+	{
+		INFO(localFiles[i]);
+	}
+
+	lbFile::writeToFile("example/config.txt", "death_msg = Arrgghhh...");
 
 
 	// Throwing an error that will end the program

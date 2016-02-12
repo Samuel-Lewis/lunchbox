@@ -9,4 +9,3 @@ xp_gain = 2.5
 
 # Used on splash screen
 phrase = Time to adventure!
-death_msg = Arrgghhh...

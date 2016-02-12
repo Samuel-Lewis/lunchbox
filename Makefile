@@ -21,7 +21,7 @@ VERSION = -std=c++11
 CC_OPTIONS = -pedantic -Wall -Wextra -O2 #-ansi
 
 # Includes and linkers
-HEADERS =
+HEADERS = # -Iinclude/
 LIBS =
 
 
