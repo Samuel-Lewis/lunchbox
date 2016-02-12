@@ -5,7 +5,7 @@
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2016-02-12 10:37:28
+//	@Last Updated:	2016-02-12 13:04:37
 //	@Created:		2015-09-30 13:45:13
 //
 //===============================================//
@@ -15,12 +15,12 @@
 
 #include <vector>
 
-#include "lbLog.h"
-#include "lbRNG.h"
-#include "lbString.h"
-#include "lbCSV.h"
-#include "lbConfig.h"
-#include "lbFile.h"
+#include "../include/lbLog.h"
+#include "../include/lbRNG.h"
+#include "../include/lbString.h"
+#include "../include/lbCSV.h"
+#include "../include/lbConfig.h"
+#include "../include/lbFile.h"
 
 int main()
 {
