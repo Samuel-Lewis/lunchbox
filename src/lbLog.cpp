@@ -5,7 +5,7 @@
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-10-02 10:26:38
+//	@Last Updated:	2016-02-12 09:56:20
 //	@Created:		2015-07-14 21:26:08
 //
 //===============================================//
@@ -121,7 +121,7 @@ void lbLog::out(const char* fileTrace, int lineTrace, std::string levelTag, int 
 		_writeToFile(toLog);
 
 		endLog();
-		std::exit(1);
+		std::exit(0);
 	}
 
 	// Outputting to screen

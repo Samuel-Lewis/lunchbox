@@ -5,17 +5,20 @@
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-12-03 14:31:18
+//	@Last Updated:	2016-02-11 16:59:54
 //	@Created:		2015-12-03 14:31:04
 //
 //===============================================//
 
 
 #include <string>
-#include <fstream>
+#include <vector>
 #include <algorithm>
 
 #include "../include/lbConfig.h"
+#include "../include/lbLog.h"
+#include "../include/lbFile.h"
+
 
 lbConfig::lbConfig()
 {}
@@ -31,33 +34,25 @@ lbConfig::~lbConfig()
 // Warning, will overwrite any existing values in _data
 void lbConfig::read(std::string fileName)
 {
-	std::ifstream file;
-	file.open(fileName);
+	// Load file using lbFile
+	std::vector<std::string> fileData = lbFile::getFileContents(fileName);
 
-	std::string line = "";
-	std::string key = "";
-
-	if(file.good())
+	for (int i = 0; i < (int)fileData.size(); i++)
 	{
-		while (getline(file, line))
+		std::string line = fileData[i];
+		
+		if (line.length() > 0 && line[0] != '#')
 		{
-			// Removes lead and tail whitespace
-			trim(line);
-
-			// Make sure there is content in the string, and that it's not a comment
-			if (line.length() > 0 && line[0] != '#')
-			{
-				// Get everything up to the =
-				key = line.substr(0, line.find_first_of("="));
+			// Get everything up to the =
+			std::string key = line.substr(0, line.find_first_of("="));
 
 				// line is now the value, everything after the equals
-				line.erase(0, line.find_first_of("=")+1);
+			line.erase(0, line.find_first_of("=")+1);
 
-				trim(key);
-				trim(line);
+			trim(key);
+			trim(line);
 
-				_data[key] = line;
-			}
+			_data[key] = line;
 		}
 	}
 }
