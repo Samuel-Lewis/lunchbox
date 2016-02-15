@@ -3,7 +3,7 @@
 #  https://github.com/Samuel-Lewis/lunchbox
 #
 #  Samuel Lewis
-#  5th Dec 2015
+#  15th Feb 2016
 #
 # COMMANDS TO USE
 #  make		makes all
@@ -16,12 +16,12 @@
 PROJECT = main
 
 # COMPILER
-CC = g++
-VERSION = -std=c++11 
-CC_OPTIONS = -pedantic -Wall -Wextra -O2 #-ansi
+CC =g++
+VERSION =-std=c++11
+CC_OPTIONS =-pedantic -Wall -Wextra -O2#-ansi
 
 # Includes and linkers
-HEADERS = # -Iinclude/
+HEADERS =# -I
 LIBS =
 
 
