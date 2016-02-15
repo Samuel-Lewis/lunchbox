@@ -25,8 +25,6 @@ private:
 	// Indiviual files data, are stored in CfgFile with a key and value
 	class CfgFile
 	{
-		// Making it a friend class so that lbConfig can access _itemData, but no one else should be able to
-		friend class lbConfig;
 	public:
 		CfgFile() {};
 		~CfgFile() {};
@@ -42,6 +40,8 @@ private:
 
 		std::string get(std::string key) { return get<std::string>(key); }
 
+		void set(std::string, std::string);
+
 	private:
 		std::map<std::string, std::string> _itemData;
 	};
@@ -50,6 +50,8 @@ public:
 	static CfgFile& file(std::string);
 
 	static void defaultDir(std::string);
+
+	static void clearCache();
 
 private:
 	lbConfig();

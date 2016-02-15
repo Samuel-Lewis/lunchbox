@@ -60,8 +60,10 @@ int main()
 
 	// If writing the full path is too tedious, you can set default directory
 	lbConfig::defaultDir("example/");
-
 	INFO("Tile width: " << lbConfig::file("config.txt").get<int>("tile_width"));
+
+	// If you're concerend your loading in too much, you can clear cachce
+	lbConfig::clearCache();
 
 	// ==== lbFile demo ==== //
 	std::vector<std::string> localFiles = lbFile::getContentsOfDir("example");

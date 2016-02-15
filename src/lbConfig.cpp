@@ -60,9 +60,6 @@ void lbConfig::loadFile(std::string filePath)
 		return;
 	}
 
-	// FIXME If there was no contents loaded, it will return before setting anything in the map.
-	// Hence, in file(string), it will probably break when it tries to call it.
-
 	_files[filePath] = new CfgFile();
 
 	for (int i = 0; i < (int)lines.size(); i++)
@@ -85,7 +82,7 @@ void lbConfig::loadFile(std::string filePath)
 		lbString::trim(data);
 
 		// Only possible because friend class :D
-		_files[filePath]->_itemData[key] = data;
+		_files[filePath]->set(key, data);
 
 	}
 }
@@ -93,4 +90,24 @@ void lbConfig::loadFile(std::string filePath)
 void lbConfig::defaultDir(std::string path)
 {
 	_defaultDir = path;
+}
+
+void lbConfig::CfgFile::set(std::string key, std::string val)
+{
+	if (_itemData.count(key))
+	{
+		WARN("Overwriting key '" << key << "' from '" << _itemData[key] << "' to '" << val << "'.");
+	}
+
+	_itemData[key] = val;
+}
+
+void lbConfig::clearCache()
+{
+	for (auto const& entry : _inst->_files)
+	{
+		delete _inst->_files[entry.first];
+	}
+
+	_inst->_files.clear();
 }
