@@ -10,73 +10,87 @@
 //
 //===============================================//
 
-
 #include <string>
 #include <vector>
 #include <algorithm>
 
-#include "../include/lbConfig.h"
-#include "../include/lbLog.h"
-#include "../include/lbFile.h"
+#include "../lunchbox.h"
 
+// Static var pre decleration
+lbConfig* lbConfig::_inst;
+std::string lbConfig::_defaultDir = "";
 
 lbConfig::lbConfig()
 {}
 
-lbConfig::lbConfig(std::string fileName)
-{
-	read(fileName);
-}
-
 lbConfig::~lbConfig()
 {}
 
-// Warning, will overwrite any existing values in _data
-void lbConfig::read(std::string fileName)
+lbConfig::CfgFile& lbConfig::file(std::string filePath)
 {
-	// Load file using lbFile
-	std::vector<std::string> fileData = lbFile::getFileContents(fileName);
-
-	for (int i = 0; i < (int)fileData.size(); i++)
+	// If there is no instance of itself, make one. Making this a singleton
+	if (_inst == nullptr)
 	{
-		std::string line = fileData[i];
-		
-		if (line.length() > 0 && line[0] != '#')
+		_inst = new lbConfig();
+	}
+
+	filePath = _defaultDir + filePath;
+
+	// Check if file has been loaded yet
+	if(!(_inst->_files.count(filePath)))
+	{
+		INFO(filePath << " config not loaded.");
+		_inst->loadFile(filePath);
+	}
+
+	return *(_inst->_files[filePath]);
+}
+
+
+void lbConfig::loadFile(std::string filePath)
+{
+	INFO("Loading config file " << filePath << "...");
+
+	// Read the contents of the file
+	std::vector<std::string> lines = lbFile::getFileContents(filePath);
+
+	if (lines.size() == 0)
+	{
+		WARN("No configs loaded from file " << filePath <<". Please check the path or the files contents.");
+		return;
+	}
+
+	// FIXME If there was no contents loaded, it will return before setting anything in the map.
+	// Hence, in file(string), it will probably break when it tries to call it.
+
+	_files[filePath] = new CfgFile();
+
+	for (int i = 0; i < (int)lines.size(); i++)
+	{
+		std::string line = lines[i];
+
+		// Ignore blank lines, or lines with '#' (comment lines)
+		if (line.size() == 0 || line.find_first_not_of(" \t") == '#')
 		{
-			// Get everything up to the =
-			std::string key = line.substr(0, line.find_first_of("="));
-
-				// line is now the value, everything after the equals
-			line.erase(0, line.find_first_of("=")+1);
-
-			trim(key);
-			trim(line);
-
-			_data[key] = line;
+			continue;
 		}
+
+		// Split key and data at the *FIRST* equals sign.
+		// Technically, I guess you could have an equal in the data then
+		std::string key = line.substr(0, line.find_first_of("="));
+		std::string data = line.substr(line.find_first_of("=")+1, line.size());
+
+		// Trim white space
+		lbString::trim(key);
+		lbString::trim(data);
+
+		// Only possible because friend class :D
+		_files[filePath]->_itemData[key] = data;
+
 	}
 }
 
-// Shortcut to get strings
-std::string lbConfig::get(std::string key)
+void lbConfig::defaultDir(std::string path)
 {
-	return _data[key];
-}
-
-std::string lbConfig::operator[](std::string keyName)
-{
-	return get(keyName);
-}
-
-
-// Utility
-void lbConfig::trim(std::string& str)
-{
-	// Trim leading whitespace or tabs
-	str.erase(0, str.find_first_not_of(" \t"));
-
-	// Trimp trailing whitespace or tabs
-	std::reverse(str.begin(), str.end());
-	str.erase(0, str.find_first_not_of(" \t"));
-	std::reverse(str.begin(), str.end());
+	_defaultDir = path;
 }

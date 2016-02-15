@@ -20,34 +20,46 @@
 
 class lbConfig
 {
-public:
-	lbConfig();
-	lbConfig(std::string);
-	~lbConfig();
-
-	void read(std::string);
-	
-	// Get and convert to type
-	template<typename T>
-	T get(std::string key)
-	{
-		// Use a stringstream to try and convert
-		std::stringstream ss(_data[key]);
-
-		T retType;
-		ss >> retType;
-
-		return retType;
-	}
-
-	std::string operator[](std::string);
-	std::string get(std::string);
-
 private:
 
-	std::map<std::string, std::string> _data;
+	// Indiviual files data, are stored in CfgFile with a key and value
+	class CfgFile
+	{
+		// Making it a friend class so that lbConfig can access _itemData, but no one else should be able to
+		friend class lbConfig;
+	public:
+		CfgFile() {};
+		~CfgFile() {};
 
-	void trim(std::string&);
+		template <typename T>
+		T get(std::string key)
+		{
+			std::stringstream ss(_itemData[key]);
+			T retType;
+			ss >> retType;
+			return retType;
+		}
+
+		std::string get(std::string key) { return get<std::string>(key); }
+
+	private:
+		std::map<std::string, std::string> _itemData;
+	};
+
+public:
+	static CfgFile& file(std::string);
+
+	static void defaultDir(std::string);
+
+private:
+	lbConfig();
+	~lbConfig();
+	static lbConfig* _inst;
+	static std::string _defaultDir;
+
+	std::map<std::string, CfgFile*> _files;
+
+	void loadFile(std::string);
 
 };
 
