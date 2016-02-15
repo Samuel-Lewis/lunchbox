@@ -15,9 +15,7 @@
 #include <vector>
 #include <fstream>
 
-#include "../include/lbCSV.h"
-
-#include "../include/lbLog.h"
+#include "../lunchbox.h"
 
 lbCSV::lbCSV() {}
 lbCSV::lbCSV(std::string fileName)
@@ -34,7 +32,7 @@ void lbCSV::read(std::string fileName)
 
 	std::ifstream file(fileName);
 
-	std::string line = "";	
+	std::string line = "";
 
 	// Catergories
 	std::vector<std::string> keys;
@@ -44,7 +42,7 @@ void lbCSV::read(std::string fileName)
 	if (file.good())
 	{
 		INFO("CSV file is good.");
-		
+
 		// Get template line, ignoring any comments
 		while (keys.size() == 0)
 		{
@@ -105,7 +103,7 @@ std::vector<std::string> lbCSV::_splitLine(std::string line)
 	{
 		if (line[i] == '"')
 		{
-			// Everything within quotes (" ") is escaped 
+			// Everything within quotes (" ") is escaped
 			escaped = !escaped;
 		} else if (line[i] == '#' && !escaped) {
 			// Everything after the comment sign is ignored

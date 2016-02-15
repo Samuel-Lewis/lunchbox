@@ -2,7 +2,7 @@
 //
 //	@Author:	Samuel Lewis
 //	@Project:	https://github.com/Samuel-Lewis/lunchbox
-//			
+//
 //
 //	@Last Updated: 2015-07-30 21:37:43
 //	@Created:      2015-07-14 21:26:08
@@ -13,7 +13,7 @@
 #include <vector>
 #include <algorithm>
 
-#include "../include/lbString.h"
+#include "../lunchbox.h"
 
 // Split a string up by at least one delimeter string. Return it all in a vector of substrings
 std::vector<std::string> lbString::split (std::string& sentString, std::string delim)
@@ -37,7 +37,7 @@ std::vector<std::string> lbString::split (std::string& sentString, std::string d
 
 		nextPos = workingString.find(delim);
 	}
-	
+
 	// Add the last value, where there are no more delims
 	newStrings.push_back(workingString);
 

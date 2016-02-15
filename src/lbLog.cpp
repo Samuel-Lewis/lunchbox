@@ -16,7 +16,7 @@
 #include <fstream>
 #include <sstream>
 
-#include "../include/lbLog.h"
+#include "../lunchbox.h"
 
 // Pre decalre static vars
 int lbLog::_logLevel = lbLog::none;
@@ -62,7 +62,7 @@ std::string lbLog::_getDateTime(bool justTime) {
 // Start logging to file, with standard name and root location
 void lbLog::startLog() {
 	_createLog("",(_getDateTime(false)+".log").c_str());
-}	
+}
 
 // Start logging to file, with custom fileName and custom location, with the option of adding timestamp
 void lbLog::startLog(std::string path, std::string fileName, bool addTimeStamp) {
@@ -78,7 +78,7 @@ void lbLog::startLog(std::string path, std::string fileName, bool addTimeStamp) 
 	}
 	fullFileName += ".log";
 	_createLog(path,(fullFileName).c_str());
-}	
+}
 
 // Close the file, to stop corruption and loose ends
 void lbLog::endLog() {

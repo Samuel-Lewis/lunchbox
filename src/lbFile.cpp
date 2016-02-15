@@ -5,11 +5,10 @@
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2016-02-12 10:28:34
+//	@Last Updated:	2016-02-14 15:37:54
 //	@Created:		2016-02-11 16:45:20
 //
 //===============================================//
-
 
 #include <string>
 #include <vector>
@@ -26,9 +25,7 @@
 	#include <sys/types.h>
 #endif
 
-#include "../include/lbLog.h"
-#include "../include/lbFile.h"
-
+#include "../lunchbox.h"
 
 std::vector<std::string> lbFile::getFileContents(std::string filePath)
 {
@@ -49,7 +46,10 @@ std::vector<std::string> lbFile::getFileContents(std::string filePath)
 	} else {
 		// File not found.
 		WARN("Could not find file " << filePath << ". Returning empty vector.");
+		return data;
 	}
+
+	INFO("Successfully read file");
 
 	return data;
 }
@@ -60,7 +60,6 @@ std::vector<std::string> lbFile::getContentsOfDir(std::string dirPath)
 {
 	std::vector<std::string> files;
 
-	
 	#ifdef WINDOWS
 	// If WINDOWS
 
@@ -88,7 +87,7 @@ std::vector<std::string> lbFile::getContentsOfDir(std::string dirPath)
 	} while (FindNextFile(dir, &file_data));
 
 	FindClose(dir);
-	
+
 	#else
 	// else if UNIX
 
@@ -104,8 +103,6 @@ std::vector<std::string> lbFile::getContentsOfDir(std::string dirPath)
 		WARN(dirPath << " is not a valid path, or you don't have permission to it.");
 		return files;
 	}
-
-
 
 	while ((ent = readdir(dir)) != NULL) {
 		const std::string file_name = ent->d_name;
