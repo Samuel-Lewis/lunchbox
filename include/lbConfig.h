@@ -18,6 +18,8 @@
 #include <sstream>
 #include <map>
 
+#include "../lunchbox.h"
+
 class lbConfig
 {
 private:
@@ -35,6 +37,7 @@ private:
 			std::stringstream ss(_itemData[key]);
 			T retType;
 			ss >> retType;
+			INFO("Found config " << key << "'. Returned '" << _itemData[key] << "'.");
 			return retType;
 		}
 

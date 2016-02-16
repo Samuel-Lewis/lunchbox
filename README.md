@@ -1,6 +1,6 @@
-##Welcome to the Lunchbox wiki!##
+## Welcome to the Lunchbox wiki! ##
 A selection of tools to use in C++. These are here mainly for my own sake, but anyone is welcome to use these in their own projects. I'm welcome to any suggestions, and would appreciate any feedback.  
-  
+
 ### Tools ###
 - [lbConfig](https://github.com/Samuel-Lewis/lunchbox/wiki/lbConfig): Lightweight config file reader.
 - [lbCSV](https://github.com/Samuel-Lewis/lunchbox/wiki/lbCSV): Reads CSV files into your program.

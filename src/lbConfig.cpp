@@ -31,6 +31,7 @@ lbConfig::CfgFile& lbConfig::file(std::string filePath)
 	// If there is no instance of itself, make one. Making this a singleton
 	if (_inst == nullptr)
 	{
+		INFO("Initializing lbConfig");
 		_inst = new lbConfig();
 	}
 
