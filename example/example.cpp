@@ -10,7 +10,7 @@
 //
 //===============================================//
 
-#define _LB_EXAMPLE
+// #define _LB_EXAMPLE
 #ifdef _LB_EXAMPLE
 
 #include <vector>
