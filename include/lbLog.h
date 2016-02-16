@@ -25,7 +25,6 @@
 #define WARN(msg) { std::stringstream lbLog_sstream_input; lbLog_sstream_input << msg; lbLog::out(__FILENAME__, __LINE__, "WARNING", lbLog::warn, lbLog_sstream_input.str().c_str()); }
 #define INFO(msg) { std::stringstream lbLog_sstream_input; lbLog_sstream_input << msg; lbLog::out(__FILENAME__, __LINE__, "INFO", lbLog::info, lbLog_sstream_input.str().c_str()); }
 #define LOG(msg) { std::stringstream lbLog_sstream_input; lbLog_sstream_input << msg; lbLog::out(__FILENAME__, __LINE__, "LOG", lbLog::log, lbLog_sstream_input.str().c_str()); }
-#define MARK() { lbLog::out(__FILENAME__, __LINE__, "MARK", lbLog::mark, ""); }
 
 class lbLog {
 public:

@@ -37,7 +37,7 @@ private:
 			std::stringstream ss(_itemData[key]);
 			T retType;
 			ss >> retType;
-			INFO("Found config " << key << "'. Returned '" << _itemData[key] << "'.");
+			LOG("Found config '" << key << "'. Returned '" << _itemData[key] << "'.");
 			return retType;
 		}
 

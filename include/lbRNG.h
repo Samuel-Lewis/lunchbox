@@ -21,19 +21,22 @@ class lbRNG
 private:
 	lbRNG();
 	~lbRNG();
-	
+
 	static std::string _seedStr;
 	static std::default_random_engine _eng;
-	
+
 public:
 
 	// SEED SETTERS / GETTERS
 	static std::string generateSeed(std::string seedStr)
 	{
+
 		_seedStr = seedStr;
 		std::seed_seq seed(seedStr.begin(), seedStr.end());
 		_eng.seed(seed);
 
+		LOG("Generated seed from '" << seedStr << "'");
+		
 		return _seedStr;
 	}
 

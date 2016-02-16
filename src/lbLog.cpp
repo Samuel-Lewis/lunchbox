@@ -20,7 +20,7 @@
 
 // Pre decalre static vars
 int lbLog::_logLevel = lbLog::none;
-int lbLog::_fileLogLevel = lbLog::all;
+int lbLog::_fileLogLevel = lbLog::info;
 int lbLog::_quitLevel = lbLog::fatal;
 std::ofstream lbLog::_logFile;
 

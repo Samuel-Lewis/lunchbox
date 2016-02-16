@@ -29,7 +29,7 @@
 
 std::vector<std::string> lbFile::getFileContents(std::string filePath)
 {
-	INFO("Reading data from file " << filePath);
+	LOG("Reading data from file " << filePath);
 	std::ifstream file;
 	file.open(filePath);
 
@@ -49,7 +49,7 @@ std::vector<std::string> lbFile::getFileContents(std::string filePath)
 		return data;
 	}
 
-	INFO("Successfully read file");
+	LOG("Successfully read file");
 
 	return data;
 }
@@ -59,6 +59,7 @@ std::vector<std::string> lbFile::getFileContents(std::string filePath)
 std::vector<std::string> lbFile::getContentsOfDir(std::string dirPath)
 {
 	std::vector<std::string> files;
+	LOG("Searching for files in '" << dirPath << "'");
 
 	#ifdef WINDOWS
 	// If WINDOWS
@@ -68,7 +69,7 @@ std::vector<std::string> lbFile::getContentsOfDir(std::string dirPath)
 
 	if ((dir = FindFirstFile((dirPath + "/*").c_str(), &file_data)) == INVALID_HANDLE_VALUE)
 	{
-		INFO("No files found in " << dirPath);
+		LOG("No files found in " << dirPath);
 		return files;
 	}
 

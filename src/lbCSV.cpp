@@ -28,7 +28,7 @@ lbCSV::~lbCSV() {}
 // File name should include path
 void lbCSV::read(std::string fileName)
 {
-	INFO("Attempting to load CSV file: " << fileName);
+	LOG("Loading CSV file '" << fileName << "'");
 
 	std::ifstream file(fileName);
 
@@ -41,8 +41,6 @@ void lbCSV::read(std::string fileName)
 
 	if (file.good())
 	{
-		INFO("CSV file is good.");
-
 		// Get template line, ignoring any comments
 		while (keys.size() == 0)
 		{
@@ -56,7 +54,7 @@ void lbCSV::read(std::string fileName)
 		{
 			debugKeys += keys[i] + ", ";
 		}
-		INFO("Loaded CSV keys: " << debugKeys);
+		LOG("Loaded CSV keys: " << debugKeys);
 
 		// Get all the other lines
 		while (getline (file, line))
@@ -67,7 +65,7 @@ void lbCSV::read(std::string fileName)
 			{
 				if (data.size() != keys.size())
 				{
-					ERROR("Number of data in line does not equal number of keys: #keys=" << keys.size() << ", #vals=" << data.size());
+					WARN("Number of data in line does not equal number of keys: #keys=" << keys.size() << ", #vals=" << data.size());
 					break;
 				}
 				for (unsigned i = 0; i < data.size(); i++)
@@ -133,8 +131,6 @@ std::vector<std::string> lbCSV::_splitLine(std::string line)
 
 		debugVals += data[i] + ", ";
 	}
-
-	LOG("Read line: " << debugVals);
 
 	// Make it an empty line if all empty
 	if (allEmpty)

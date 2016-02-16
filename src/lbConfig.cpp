@@ -31,7 +31,7 @@ lbConfig::CfgFile& lbConfig::file(std::string filePath)
 	// If there is no instance of itself, make one. Making this a singleton
 	if (_inst == nullptr)
 	{
-		INFO("Initializing lbConfig");
+		LOG("Initializing lbConfig");
 		_inst = new lbConfig();
 	}
 
@@ -40,7 +40,7 @@ lbConfig::CfgFile& lbConfig::file(std::string filePath)
 	// Check if file has been loaded yet
 	if(!(_inst->_files.count(filePath)))
 	{
-		INFO(filePath << " config not loaded.");
+		LOG(filePath << " config not loaded.");
 		_inst->loadFile(filePath);
 	}
 
@@ -50,7 +50,7 @@ lbConfig::CfgFile& lbConfig::file(std::string filePath)
 
 void lbConfig::loadFile(std::string filePath)
 {
-	INFO("Loading config file " << filePath << "...");
+	LOG("Loading config file " << filePath << "...");
 
 	// Read the contents of the file
 	std::vector<std::string> lines = lbFile::getFileContents(filePath);
@@ -86,6 +86,8 @@ void lbConfig::loadFile(std::string filePath)
 		_files[filePath]->set(key, data);
 
 	}
+
+	LOG("Loaded config file " << filePath);
 }
 
 void lbConfig::defaultDir(std::string path)
@@ -111,4 +113,6 @@ void lbConfig::clearCache()
 	}
 
 	_inst->_files.clear();
+
+	INFO("Cleared lbConfig cache");
 }
