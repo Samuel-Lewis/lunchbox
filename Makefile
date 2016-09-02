@@ -42,11 +42,14 @@ $(PROJECT): $(SRC_OBJECTS)
 # Builds
 all: $(PROJECT)
 
-run: $(PROJECT)
-	./$(PROJECT)
+test: CC_OPTIONS += -DDEBUG_TESTS
+test: all
 
 debug: CC_OPTIONS += -DDEBUG
 debug: all
+
+run: $(PROJECT)
+	./$(PROJECT)
 
 # Clean
 .PHONY: clean

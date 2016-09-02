@@ -1,14 +1,9 @@
-//===============================================//
 //
 //	@Author:	Samuel Lewis
 //	@Github:	http://github.com/Samuel-Lewis/lunchbox
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2016-02-11 16:59:54
-//	@Created:		2015-12-03 14:31:04
-//
-//===============================================//
 
 #include <string>
 #include <vector>
@@ -31,7 +26,7 @@ lbConfig::CfgFile& lbConfig::file(std::string filePath)
 	// If there is no instance of itself, make one. Making this a singleton
 	if (_inst == nullptr)
 	{
-		LOG("Initializing lbConfig");
+		INFO("Initializing lbConfig");
 		_inst = new lbConfig();
 	}
 
@@ -40,7 +35,7 @@ lbConfig::CfgFile& lbConfig::file(std::string filePath)
 	// Check if file has been loaded yet
 	if(!(_inst->_files.count(filePath)))
 	{
-		LOG(filePath << " config not loaded.");
+		INFO(filePath << " config not loaded.");
 		_inst->loadFile(filePath);
 	}
 
@@ -50,10 +45,10 @@ lbConfig::CfgFile& lbConfig::file(std::string filePath)
 
 void lbConfig::loadFile(std::string filePath)
 {
-	LOG("Loading config file " << filePath << "...");
+	INFO("Loading config file " << filePath << "...");
 
 	// Read the contents of the file
-	std::vector<std::string> lines = lbFile::getFileContents(filePath);
+	std::vector<std::string> lines = lbFile::getFileLines(filePath);
 
 	if (lines.size() == 0)
 	{
@@ -81,13 +76,14 @@ void lbConfig::loadFile(std::string filePath)
 		// Trim white space
 		lbString::trim(key);
 		lbString::trim(data);
+		TRACE("\t Added config Key: " << key << ", Data: " << data);
 
 		// Only possible because friend class :D
 		_files[filePath]->set(key, data);
 
 	}
 
-	LOG("Loaded config file " << filePath);
+	INFO("Loaded " << _files[filePath]->_itemData.size() << " configs from file " << filePath);
 }
 
 void lbConfig::defaultDir(std::string path)
@@ -107,12 +103,14 @@ void lbConfig::CfgFile::set(std::string key, std::string val)
 
 void lbConfig::clearCache()
 {
+	int count = 0;
 	for (auto const& entry : _inst->_files)
 	{
+		count++;
 		delete _inst->_files[entry.first];
 	}
 
 	_inst->_files.clear();
 
-	INFO("Cleared lbConfig cache");
+	INFO("Cleared lbConfig cache. " << count << " entries.");
 }

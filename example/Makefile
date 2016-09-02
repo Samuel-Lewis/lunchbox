@@ -11,18 +11,19 @@ PROJECT = main
 
 # COMPILER
 CC = g++
-VERSION = -std=c++11 
+VERSION = -std=c++11
 CC_OPTIONS = -pedantic -Wall -Wextra -O2 -D_LB_EXAMPLE#-ansi
 
 # Includes and linkers
-HEADERS = -I../include
+HEADERS =# -I
 LIBS =
 
 #########################
 # No need to edit below here
 
 # Sources
-SOURCES = $(shell find ./.. -type f -name "*.cpp")
+# Intentionally verbose folder structure to avoid misuse elsewhere
+SOURCES = $(shell find ./../../lunchbox -type f -name "*.cpp")
 SRC_OBJECTS = $(SOURCES:.cpp=.o)
 
 %.o: %.cpp
@@ -33,6 +34,12 @@ $(PROJECT): $(SRC_OBJECTS)
 
 # Builds
 all: $(PROJECT)
+
+test: CC_OPTIONS += -DDEBUG_TESTS
+test: all
+
+debug: CC_OPTIONS += -DDEBUG
+debug: all
 
 run: $(PROJECT)
 	./$(PROJECT)

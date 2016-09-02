@@ -1,14 +1,9 @@
-//===============================================//
 //
 //	@Author:	Samuel Lewis
 //	@Github:	http://github.com/Samuel-Lewis/lunchbox
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-11-22 21:30:11
-//	@Created:		2015-11-22 21:28:32
-//
-//===============================================//
 
 #include "../lunchbox.h"
 

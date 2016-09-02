@@ -1,14 +1,9 @@
-//===============================================//
 //
 //	@Author:	Samuel Lewis
 //	@Github:	http://github.com/Samuel-Lewis/lunchbox
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-12-03 14:31:09
-//	@Created:		2015-12-03 14:31:04
-//
-//===============================================//
 
 
 #ifndef LB_CONFIG_H
@@ -37,15 +32,13 @@ private:
 			std::stringstream ss(_itemData[key]);
 			T retType;
 			ss >> retType;
-			LOG("Found config '" << key << "'. Returned '" << _itemData[key] << "'.");
+			INFO("Found config '" << key << "'. Returned '" << _itemData[key] << "'.");
 			return retType;
 		}
 
 		std::string get(std::string key) { return get<std::string>(key); }
 
 		void set(std::string, std::string);
-
-	private:
 		std::map<std::string, std::string> _itemData;
 	};
 

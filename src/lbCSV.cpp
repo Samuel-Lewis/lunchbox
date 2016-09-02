@@ -1,14 +1,9 @@
-//===============================================//
 //
 //	@Author:	Samuel Lewis
 //	@Github:	http://github.com/Samuel-Lewis/lunchbox
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-12-03 15:48:41
-//	@Created:		2015-09-30 13:34:43
-//
-//===============================================//
 
 #include <string>
 #include <map>
@@ -28,7 +23,7 @@ lbCSV::~lbCSV() {}
 // File name should include path
 void lbCSV::read(std::string fileName)
 {
-	LOG("Loading CSV file '" << fileName << "'");
+	INFO("Loading CSV file '" << fileName << "'");
 
 	std::ifstream file(fileName);
 
@@ -54,7 +49,7 @@ void lbCSV::read(std::string fileName)
 		{
 			debugKeys += keys[i] + ", ";
 		}
-		LOG("Loaded CSV keys: " << debugKeys);
+		INFO("Loaded CSV keys: " << debugKeys);
 
 		// Get all the other lines
 		while (getline (file, line))
@@ -84,6 +79,8 @@ void lbCSV::read(std::string fileName)
 	} else {
 		ERROR("Could not open CSV file: " << fileName);
 	}
+
+	INFO("Loaded " << table.size() << "cols.");
 }
 
 std::vector<std::string> lbCSV::_splitLine(std::string line)

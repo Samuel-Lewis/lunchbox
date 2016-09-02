@@ -1,14 +1,10 @@
-//===============================================//
 //
 //	@Author:	Samuel Lewis
 //	@Github:	http://github.com/Samuel-Lewis/lunchbox
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-11-22 19:23:27
-//	@Created:		2015-07-14 21:26:08
-//
-//===============================================//
+
 
 #ifndef _LB_RNG_H
 #define _LB_RNG_H
@@ -35,8 +31,8 @@ public:
 		std::seed_seq seed(seedStr.begin(), seedStr.end());
 		_eng.seed(seed);
 
-		LOG("Generated seed from '" << seedStr << "'");
-		
+		INFO("Generated seed from '" << seedStr << "'");
+
 		return _seedStr;
 	}
 

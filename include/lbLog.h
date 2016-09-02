@@ -1,14 +1,10 @@
-//===============================================//
 //
 //	@Author:	Samuel Lewis
 //	@Github:	http://github.com/Samuel-Lewis/lunchbox
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2015-11-12 16:33:30
-//	@Created:		2015-07-14 21:26:08
-//
-//===============================================//
+
 
 #ifndef _LB_LOG_H
 #define _LB_LOG_H
@@ -24,7 +20,6 @@
 #define ERROR(msg) { std::stringstream lbLog_sstream_input; lbLog_sstream_input << msg; lbLog::out(__FILENAME__, __LINE__, "ERROR", lbLog::error, lbLog_sstream_input.str().c_str()); }
 #define WARN(msg) { std::stringstream lbLog_sstream_input; lbLog_sstream_input << msg; lbLog::out(__FILENAME__, __LINE__, "WARNING", lbLog::warn, lbLog_sstream_input.str().c_str()); }
 #define INFO(msg) { std::stringstream lbLog_sstream_input; lbLog_sstream_input << msg; lbLog::out(__FILENAME__, __LINE__, "INFO", lbLog::info, lbLog_sstream_input.str().c_str()); }
-#define LOG(msg) { std::stringstream lbLog_sstream_input; lbLog_sstream_input << msg; lbLog::out(__FILENAME__, __LINE__, "LOG", lbLog::log, lbLog_sstream_input.str().c_str()); }
 #define TRACE(msg) { std::stringstream lbLog_sstream_input; lbLog_sstream_input << msg; lbLog::out(__FILENAME__, __LINE__, "TRACE", lbLog::trace, lbLog_sstream_input.str().c_str()); }
 
 class lbLog {
@@ -35,7 +30,6 @@ public:
 		error,
 		warn,
 		info,
-		log,
 		trace,
 		all
 	};

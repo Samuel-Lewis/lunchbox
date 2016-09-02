@@ -1,14 +1,9 @@
-//===============================================//
 //
 //	@Author:	Samuel Lewis
 //	@Github:	http://github.com/Samuel-Lewis/lunchbox
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2016-02-14 15:37:54
-//	@Created:		2016-02-11 16:45:20
-//
-//===============================================//
 
 #include <string>
 #include <vector>
@@ -27,9 +22,18 @@
 
 #include "../lunchbox.h"
 
-std::vector<std::string> lbFile::getFileContents(std::string filePath)
+std::string lbFile::getFileContents(std::string filePath) {
+	std::vector<std::string> lines = getFileLines(filePath);
+	std::string ret = "";
+	for (size_t i = 0; i < lines.size(); i++) {
+		ret += lines[i] + "\n";
+	}
+	return ret;
+}
+
+std::vector<std::string> lbFile::getFileLines(std::string filePath)
 {
-	LOG("Reading data from file " << filePath);
+	INFO("Reading data from file " << filePath);
 	std::ifstream file;
 	file.open(filePath);
 
@@ -45,11 +49,11 @@ std::vector<std::string> lbFile::getFileContents(std::string filePath)
 		}
 	} else {
 		// File not found.
-		WARN("Could not find file " << filePath << ". Returning empty vector.");
+		ERROR("Could not find file " << filePath << ". Returning empty contents.");
 		return data;
 	}
 
-	LOG("Successfully read file");
+	INFO("Successfully read file");
 
 	return data;
 }
@@ -59,7 +63,7 @@ std::vector<std::string> lbFile::getFileContents(std::string filePath)
 std::vector<std::string> lbFile::getContentsOfDir(std::string dirPath)
 {
 	std::vector<std::string> files;
-	LOG("Searching for files in '" << dirPath << "'");
+	INFO("Searching for files in '" << dirPath << "'");
 
 	#ifdef WINDOWS
 	// If WINDOWS
@@ -69,7 +73,7 @@ std::vector<std::string> lbFile::getContentsOfDir(std::string dirPath)
 
 	if ((dir = FindFirstFile((dirPath + "/*").c_str(), &file_data)) == INVALID_HANDLE_VALUE)
 	{
-		LOG("No files found in " << dirPath);
+		INFO("No files found in " << dirPath);
 		return files;
 	}
 
