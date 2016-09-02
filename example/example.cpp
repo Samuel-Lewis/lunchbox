@@ -1,14 +1,9 @@
-//===============================================//
 //
 //	@Author:	Samuel Lewis
 //	@Github:	http://github.com/Samuel-Lewis/lunchbox
 //
 //	@Project:	Lunchbox Toolset
 //
-//	@Last Updated:	2016-02-12 13:04:37
-//	@Created:		2015-09-30 13:45:13
-//
-//===============================================//
 
 // #define _LB_EXAMPLE
 #ifdef _LB_EXAMPLE
@@ -24,7 +19,7 @@ int main()
 	lbLog::quickSet(lbLog::info, lbLog::all, lbLog::fatal);
 
 	// Start the log in example/logs directory, named 'testlog-[timestamp].log'
-	lbLog::startLog("example/logs/","testlog",true);
+	lbLog::startLog("logs/","testlog",true);
 
 	// ==== lbRNG demo ==== //
 	// INFO(lbRNG::generateSeed("custom seed string"));
@@ -50,31 +45,37 @@ int main()
 	// ==== lbCSV demo ==== //
 	// fakelist.csv doens't exist, will throw an error
 	lbCSV list("fakelist.csv");
-	list.read("example/list.csv");
+	list.read("list.csv");
 	INFO(list.table[2]["First names"]);
 	// Check out the log, or set the log level to show INFO if you want to see the read results
 
 	// // ==== lbConfig demo ==== //
-	INFO("Phrase: " << lbConfig::file("example/config.txt").get("phrase"));
-	INFO("XP Gain: " << lbConfig::file("example/config.txt").get<float>("xp_gain"));
-
-	// If writing the full path is too tedious, you can set default directory
-	lbConfig::defaultDir("example/");
+	INFO("Phrase: " << lbConfig::file("config.txt").get("phrase"));
+	INFO("XP Gain: " << lbConfig::file("config.txt").get<float>("xp_gain"));
 	INFO("Tile width: " << lbConfig::file("config.txt").get<int>("tile_width"));
 
-	// If you're concerend your loading in too much, you can clear cachce
+	// If you're concerend your loading in too much, you can clear cache
 	lbConfig::clearCache();
 
 	// ==== lbFile demo ==== //
-	std::vector<std::string> localFiles = lbFile::getContentsOfDir("example");
-	for (int i = 0; i < (int)localFiles.size(); i++)
-	{
-		INFO(localFiles[i]);
-	}
+	INFO("My file contents:\n" << lbFile::getFileContents("config.txt"));
+	lbFile::writeToFile("config.txt", "death_msg = Arrgghhh...");
 
-	lbFile::writeToFile("example/config.txt", "death_msg = Arrgghhh...");
+	// ==== lbTest demo ==== //
+	lbTest::TEST_GROUP("SampleTests 1");
+	// lbTest::TEST(expected,actual);
+	lbTest::TEST(3,3);
+	lbTest::TEST(2,2);
+	lbTest::TEST(1.2567,1.2567);
 
+	lbTest::TEST_GROUP("SampleTests 2");
+	lbTest::TEST((std::string)"expected",(std::string)"actual");
+	lbTest::TEST(std::vector<int>{3,6,2},std::vector<int>{3,6,2});
+	lbTest::TEST(std::vector<int>{1,6,2},std::vector<int>{3,6,2});
 
+	lbTest::TEST_END();
+
+	// ==== lbLog demo ==== //
 	// Throwing an error that will end the program
 	FATAL("Bye bye");
 
