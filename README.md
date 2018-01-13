@@ -8,6 +8,7 @@ A selection of tools to use in C++. These are here mainly for my own sake, but a
 - [lbLog](https://github.com/Samuel-Lewis/lunchbox/wiki/lbLog): Run-time and external file logging.
 - [lbRNG](https://github.com/Samuel-Lewis/lunchbox/wiki/lbRNG): Random number generation on certain distributions. _WIP_.
 - [lbString](https://github.com/Samuel-Lewis/lunchbox/wiki/lbString): String manipulation and searching.
+- [lbTest](https://github.com/Samuel-Lewis/lunchbox/wiki/lbTest): Inline testing helpers.
 
 ### Install Details ###
 Download the repository to your project.  
